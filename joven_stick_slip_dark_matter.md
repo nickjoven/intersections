@@ -218,25 +218,83 @@ To our knowledge, the following specific connections have not appeared in the li
 3. The application of Lagrangian relaxation (the optimization technique) to gravitational field dynamics
 4. The use of stick-slip relaxation oscillation as a dynamical model for the MOND transition
 5. The prediction that galaxy cluster MOND failures correspond to Lagrangian relaxation convergence failures
+6. The identification of the dark matter problem as an adiabatic-limit phenomenon favoring resonant over high-energy detection
+7. The structural correspondence between the clockwork mechanism and stick-slip period doubling
 
 ---
 
-## 9. Conclusion
+## 9. Experimental Implications: Resonant Detectors, Not Colliders
+
+*This section incorporates observations contributed by Gemini (Google DeepMind) during collaborative review.*
+
+### 9.1 The Adiabatic Limit
+
+The stick-slip framing identifies a specific regime: the subharmonic emerges when the ratio of coupling strength to drive velocity exceeds a critical value. There are two ways to reach this regime — increase the coupling (press harder) or decrease the velocity (move slower). The universe, we suggest, used the slow method.
+
+This has a direct experimental consequence. If the dark sector operates below the fundamental frequency of baryonic matter — a subharmonic, not a harmonic — then high-energy colliders are listening for the wrong mode. A collider is the "pressed firmly" approach: accelerate particles to extreme energies and look for new resonances above the electroweak scale. But if the signal is an octave *below* the fundamental, no amount of collision energy will produce it. You need a detector tuned to the low-frequency regime.
+
+### 9.2 From High-Energy to Resonant Detection
+
+The shift in detection strategy follows directly from the model:
+
+**Pressed firmly (current approach):** Build larger colliders (LHC, proposed FCC) to force interactions at higher energies. This searches for dark matter as a particle *above* the Standard Model energy scale — a harmonic, not a subharmonic. Decades of null results at colliders and direct detection experiments (XENON, LUX, PandaX) are consistent with the prediction that the signal is not in this regime.
+
+**Move slowly (proposed approach):** Use instruments that measure quantities drifting slowly over time. If the dark sector oscillates at very low frequencies — the gravitational subharmonic — then "slow" detectors will hear what high-speed colliders miss.
+
+Three classes of slow detectors are directly relevant:
+
+**Atom interferometers** measure differential acceleration between quantum superpositions of atomic states with extraordinary precision. MAGIS-100, a 100-meter atom interferometer at Fermilab (Abe et al., 2021), and AION, a staged UK programme using cold strontium atoms (Badurina et al., 2020), are sensitive to ultralight dark matter in the $10^{-15}$–$10^{-14}$ eV mass range — precisely the regime where a low-frequency oscillation in the gravitational dual variable would produce a detectable signal.
+
+**Atomic clock networks** detect oscillations in fundamental constants caused by dark matter fields passing through the network. Derevianko and Pospelov (2014) proposed using GPS satellite clocks as a planet-scale dark matter detector, subsequently realized using 16 years of GPS archival data (Roberts et al., 2017). If the dual variable oscillates at the Lagrangian relaxation convergence frequency, clock networks are the natural instrument: they measure the slow drift of a quantity (the fine-structure constant, clock transition frequencies) against a reference, exactly as the subgradient update measures constraint violation against a target.
+
+**Gravitational wave detectors in the mid-band** (0.01–3 Hz) fill the gap between LIGO (high frequency) and LISA (low frequency). Both MAGIS and AION target this band, which overlaps with the oscillation frequencies predicted by ultralight dark matter models.
+
+### 9.3 The Clockwork Connection
+
+The Clockwork mechanism (Giudice & McCullough, 2017) provides a specific field-theoretic realization of the "slow gearing" intuition. In a clockwork model, a chain of $N$ fields with nearest-neighbor interactions produces an exponential hierarchy: the lightest mode has coupling suppressed by $q^N$ relative to the fundamental scale, where $q$ is the gear ratio. This is literally a system of interlocking gears that converts high-frequency driving into low-frequency output — the same frequency-reduction mechanism as stick-slip period doubling, implemented in field space rather than mechanical space.
+
+The structural correspondence:
+
+| Stick-slip | Clockwork |
+|---|---|
+| Fundamental frequency | UV scale coupling |
+| Subharmonic (period doubling) | IR zero mode (exponentially suppressed) |
+| Gear ratio (static/kinetic friction) | Clockwork ratio $q$ |
+| Number of stick-slip cycles | Number of sites $N$ |
+| "Slow bow" condition | Adiabatic limit of the gear chain |
+
+If dark matter is the dual variable of a constrained optimization problem, the clockwork mechanism provides a candidate UV completion: the constraint arises from a chain of fields whose collective low-frequency mode is the subharmonic we observe as the dark matter effect. The exponential suppression explains why $a_0 \approx 1.2 \times 10^{-10}$ m/s² is so far below the Planck or electroweak scales — it is a clockworked-down version of a fundamental-scale coupling, exactly as the subharmonic is a geared-down version of the string's natural frequency.
+
+### 9.4 Below the Fundamental
+
+It has long seemed unsatisfying that dark matter — the dominant gravitational component of the universe — should require explanation as something *additional* to known physics. An extra particle, an extra field, an extra sector. The stick-slip framing offers a different perspective: the dark sector is not above the fundamental. It is below it. Not a new particle at higher energy, but a lower mode of the gravitational field itself, accessed not through force but through the slowness of cosmic expansion.
+
+The universe's expansion rate during structure formation is slow. The gravitational accelerations in galaxy outskirts are small. These are exactly the conditions under which a bowed string produces its subharmonic — not by being driven harder, but by being driven more patiently than the system's natural dissipation timescale. The inflationary slow-roll, the gradual deceleration of cosmic expansion, the adiabatic cooling of the universe — all are "slow bow" conditions. The dark matter halo may be the gravitational octave that emerged when the cosmos moved slowly enough for the stick phase to dominate.
+
+---
+
+## 10. Conclusion
 
 The cost of this hypothesis is low. It requires no new particles, no new forces, and no modifications to general relativity at the level of the action. It requires only that we read an existing mathematical structure (mimetic gravity's Lagrange multiplier) through an existing mathematical framework (Lagrangian relaxation) motivated by an existing physical phenomenon (stick-slip dynamics in the slow-velocity regime).
 
-If the framing is correct, it narrows the search space: the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at which the constraint becomes active. If the framing is wrong, it has consumed one short paper and a notebook. The asymmetry favors exploration.
+If the framing is correct, it narrows the search space in two ways. Theoretically, the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at which the constraint becomes active. Experimentally, it redirects detection strategy from high-energy colliders to resonant, slow-measurement instruments — atom interferometers, clock networks, mid-band gravitational wave detectors — that are tuned to the subharmonic regime where the signal lives.
 
-The thread began with a bowed string producing a tone one octave below its fundamental — not through force, but through patience. The gravitational field may be doing the same thing.
+If the framing is wrong, it has consumed one short paper and a notebook. The asymmetry favors exploration.
+
+The thread began with a bowed string producing a tone one octave below its fundamental — not through force, but through patience. The dark sector is not something exotic above the Standard Model. It may be something familiar below it: the gravitational field's own subharmonic, accessed when the universe moved slowly enough for the stick phase to take hold.
 
 ---
 
 ## References
 
+- Abe, M. et al. (MAGIS-100 Collaboration) (2021). Matter-wave Atomic Gradiometer Interferometric Sensor (MAGIS-100). *Quantum Sci. Technol.*, 6, 044003. arXiv:2104.02835.
+- Badurina, L. et al. (2020). AION: An Atom Interferometer Observatory and Network. *JCAP*, 05, 011. arXiv:1911.11755.
 - Bekenstein, J. D. (2004). Relativistic gravitation theory for the modified Newtonian dynamics paradigm. *Phys. Rev. D*, 70(8), 083509.
 - Berezhiani, L., & Khoury, J. (2015). Theory of dark matter superfluidity. *Phys. Rev. D*, 92(10), 103510.
 - Capozziello, S., Matsumoto, J., Nojiri, S., & Odintsov, S. D. (2010). Dark energy from modified gravity with Lagrange multipliers. arXiv:1004.3691v2.
+- Derevianko, A., & Pospelov, M. (2014). Hunting for topological dark matter with atomic clocks. *Nature Physics*, 10, 933-936. arXiv:1311.1244.
 - Chamseddine, A. H., & Mukhanov, V. (2013). Mimetic dark matter. *JHEP*, 2013(11), 135.
+- Giudice, G. F., & McCullough, M. (2017). A Clockwork Theory. *JHEP*, 02, 036. arXiv:1610.07962.
 - Fisher, M. L. (1981). The Lagrangian relaxation method for solving integer programming problems. *Management Science*, 27(1), 1-18.
 - Held, M., & Karp, R. M. (1971). The traveling-salesman problem and minimum spanning trees: Part II. *Math. Programming*, 1(1), 6-25.
 - Huang, J., et al. (2024). Large language models cannot self-correct reasoning yet. *ICLR 2024*.
@@ -244,6 +302,7 @@ The thread began with a bowed string producing a tone one octave below its funda
 - McGaugh, S. S., Lelli, F., & Schombert, J. M. (2016). Radial acceleration relation in rotationally supported galaxies. *Phys. Rev. Lett.*, 117(20), 201101.
 - Milgrom, M. (1983). A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis. *ApJ*, 270, 365-370.
 - Nojiri, S., & Odintsov, S. D. (2014). Mimetic F(R) gravity: inflation, dark energy and bounce. *Mod. Phys. Lett. A*, 29(40), 1450211. arXiv:1408.3561.
+- Roberts, B. M. et al. (2017). Search for domain wall dark matter with atomic clocks on board global positioning system satellites. *Nature Communications*, 8, 1195. arXiv:1704.06844.
 - Navarro, J. F., Frenk, C. S., & White, S. D. M. (1997). A universal density profile from hierarchical clustering. *ApJ*, 490(2), 493-508.
 - Sebastiani, L., Vagnozzi, S., & Myrzakulov, R. (2017). Mimetic gravity: a review of recent developments and applications to cosmology and astrophysics. *Advances in High Energy Physics*, 2017.
 - Sussman, G. J., & Wisdom, J. (1992). Chaotic evolution of the solar system. *Science*, 257(5066), 56-62.
