@@ -20,17 +20,17 @@ The question is what controls the transition.
 
 ### 1.1 The Experimental Ground Truth
 
-Kawano et al. (2025) resolved this experimentally. Using high-speed imaging to visualize spatial vibration modes and finite element simulation to model the bow-string interaction, they demonstrated that subharmonic generation occurs along **two distinct paths** in the velocity-pressure phase space:
+Kawano et al. (2025) resolved this experimentally. Using high-speed imaging to visualize spatial vibration modes and finite element simulation to model the bow-string interaction, they confirmed the mechanism underlying the Anomalous Low Frequency (ALF) technique and identified the relevant region of the velocity-pressure parameter space. Their primary experimental finding is **pressure-driven**: increased bow pressure (pressing depth) amplifies frictional forces, suppresses the standard Helmholtz vibration mode, and allows the subharmonic mode to dominate. Their FEM simulations span both bow speed ($v_\text{bow}$) and pressing depth ($d_\text{bow}$), identifying **two regions** in this two-dimensional space that produce subharmonics:
 
-1. **Slow bow velocity with light contact pressure.** Below a critical bow speed, kinetic friction cannot be sustained. The string catches, loads, releases. Working string players (notably at NYU) have long known this — the subharmonic emerges from patience, not force.
+1. **Slow bow velocity with sufficient contact pressure.** When $v_\text{bow}$ drops below a critical value while maintaining adequate pressing depth, the Helmholtz mode breaks down and the stick-slip cycle dominates. Kawano et al.'s simulations show this as the low-$v_\text{bow}$, deep-$d_\text{bow}$ region of their phase diagram.
 
-2. **Increased bow pressure at moderate velocity.** Kawano et al. showed that amplified frictional force suppresses the standard Helmholtz vibration mode, allowing the subharmonic mode to dominate. The string is overwhelmed rather than understimulated, but the result is the same: stick-slip oscillation at half the fundamental frequency.
+2. **Increased bow pressure at moderate velocity.** Amplified frictional force from deep pressing depth suppresses the standard Helmholtz vibration mode, allowing the subharmonic mode to dominate. This is the experimentally confirmed path: the string is overwhelmed by coupling force.
 
-Both paths produce the same observable — a tone one octave below the fundamental with the characteristic spectral signature of period doubling. The two entry points are opposite corners of the same phase diagram. The subharmonic onset region is a narrow diagonal band in velocity-pressure space: you can reach it by moving the bow slowly or by pressing it hard.
+Both regions produce the same observable — a tone one octave below the fundamental with the characteristic spectral signature of period doubling. The subharmonic onset region occupies a band in the two-dimensional (velocity, pressure) phase space: it can be entered by slowing the bow, by pressing harder, or by some combination of both. Neither parameter alone is sufficient; the relevant quantity is their ratio to the medium's dissipative threshold.
 
 ### 1.2 The Control Surface
 
-This finding — that one of the present authors initially got wrong by assuming pressure alone governed the transition — identifies the actual control surface. The threshold is not a force threshold or a velocity threshold. It is a **ratio**: drive to dissipative capacity.
+This finding — that one of the present authors initially got wrong by treating pressure as the sole control variable — identifies the actual control surface. The threshold is not a force threshold or a velocity threshold in isolation. It is a **ratio**: drive to dissipative capacity.
 
 | Parameter | Role |
 |---|---|
@@ -62,7 +62,7 @@ The empirical facts of the dark matter problem locate the anomaly where the stic
 
 Galaxy rotation curves deviate from Newtonian predictions not at the center (high acceleration, strong field) but at the outskirts (low acceleration, weak field). The mass discrepancy-acceleration relation (McGaugh et al., 2016) shows that the discrepancy between observed and predicted gravity is a function of acceleration alone, with a characteristic scale $a_0 \approx 1.2 \times 10^{-10}$ m/s².
 
-Milgrom's MOND interpolating function $\mu(x)$, where $x = a/a_0$, transitions smoothly between Newtonian ($\mu \to 1$ for $x \gg 1$) and deep-MOND ($\mu \to x$ for $x \ll 1$) regimes. This smooth transition is characteristic of stick-slip: the Stribeck curve (friction vs. velocity in tribology) shows exactly this shape — a smooth, monotonic transition between static-friction-dominated and kinetic-friction-dominated regimes with a characteristic velocity scale.
+Milgrom's MOND interpolating function $\mu(x)$, where $x = a/a_0$, transitions smoothly between Newtonian ($\mu \to 1$ for $x \gg 1$) and deep-MOND ($\mu \to x$ for $x \ll 1$) regimes. This smooth transition is structurally identical to the Stribeck curve (friction coefficient vs. relative velocity in tribology): both are smooth, monotone functions that transition from high coupling below a characteristic scale to low coupling above it. The analogy is qualitative rather than functional — MOND interpolating functions commonly take rational or square-root forms ($\mu(x) = x/(1+x)$ or $\mu(x) = x/\sqrt{1+x^2}$), while the Stribeck curve is typically fit with exponential or polynomial decay — but the structural behavior is identical: a single characteristic scale separates two dynamical regimes, and the transition is smooth rather than sharp.
 
 ### 2.2 The Threshold Is Medium-Dependent
 
@@ -160,6 +160,8 @@ on a scalar field $\phi$ via a multiplier $\lambda$ modifies the Einstein equati
 
 This result has been developed extensively (Sebastiani et al., 2017), extended to F(R) gravity where the Lagrange multiplier mechanism produces inflation, dark energy, and bounce cosmologies (Nojiri & Odintsov, 2014), and the related approach applied to dark energy (Capozziello, Matsumoto, Nojiri & Odintsov, 2010), but always within the field-theoretic framing: the multiplier is a mathematical device that enforces a symmetry or constraint, and the resulting phenomenology happens to resemble dark matter.
 
+**Known stability concerns.** The minimal Chamseddine-Mukhanov formulation carries well-documented technical pathologies (Chaichian et al., 2014; Sebastiani et al., 2017): (1) a *ghost instability* in which the Lagrange multiplier's Hamiltonian can become unbounded below for certain initial configurations; (2) *caustic formation* arising from the pressureless dust dynamics (zero sound speed), which precludes primordial perturbation generation in cosmological applications; and (3) *superluminal propagation* of lower helicity modes relative to photons on the background metric — not a violation of causality defined by that metric, but a sign that the minimal formulation is an effective rather than fundamental theory. Higher-derivative extensions (Chamseddine & Mukhanov, 2014) and ghost-free scalar extensions resolve most of these issues. The optimization-theoretic reinterpretation developed here should be understood as operating in such an extended framework, where these pathologies are absent, rather than in the minimal original form.
+
 ### 4.2 The Optimization-Theoretic Reframing
 
 We propose reading mimetic gravity through the lens of Lagrangian relaxation:
@@ -168,7 +170,9 @@ We propose reading mimetic gravity through the lens of Lagrangian relaxation:
 
 Applied to mimetic gravity: **the dark matter field is the cost the gravitational field pays to satisfy a constraint it cannot meet using visible matter alone.** The constraint (normalization of the scalar field gradient) is a geometric requirement. The multiplier (dark matter) is what it costs to enforce that geometry given the available baryonic matter distribution.
 
-**The constraint is geometric; the price is dynamical.** This distinction has a consequence that is easy to understate: **the topology of spacetime is unchanged.** The dual variable modifies how matter moves through spacetime — the dynamics — without modifying what spacetime is — the geometry. No new fields are added to the metric. No extra dimensions are compactified. No topological defects are introduced. The manifold structure, the causal structure, the light cone structure of general relativity are preserved exactly. What changes is the cost function: the gravitational field pays a price (the dual variable) to maintain the geometric constraint that it would satisfy for free if baryonic matter were sufficient. The "dark matter" is not a thing in spacetime. It is a property of the optimization problem that spacetime is solving.
+**The constraint is geometric; the price is dynamical.** This distinction has a consequence that is easy to understate: **the topology of spacetime is unchanged.** The dual variable modifies how matter moves through spacetime — the dynamics — without modifying what spacetime is — the geometry. No new fields are added to the metric. No extra dimensions are compactified. No topological defects are introduced. The manifold structure, the causal structure, and the light cone structure of general relativity are preserved exactly. What changes is the cost function: the gravitational field pays a price (the dual variable) to maintain the geometric constraint that it would satisfy for free if baryonic matter were sufficient. The "dark matter" is not a thing in spacetime. It is a property of the optimization problem that spacetime is solving.
+
+This claim requires one qualification: it holds at the level of the background geometry. As noted in §4.1, the mimetic gravity framework in its minimal form admits superluminal perturbation modes. The statement "topology of spacetime is unchanged" refers to the manifold and its metric, not to the propagation speeds of perturbed modes, and it remains true in extended formulations that resolve the perturbation-level issues.
 
 The dark matter halo profile is therefore not an arbitrary density distribution — it is shaped by the optimization landscape. Specifically, it should reflect the structure of the dual problem: where the constraint is most binding (galaxy outskirts, low acceleration), the dual variable (dark matter density) is largest.
 
@@ -182,13 +186,15 @@ Renzo's Rule (Sancisi, 2004) is the empirical observation that for every feature
 
 This is difficult for particle dark matter. An NFW halo (Navarro, Frenk & White, 1997) is smooth — it has no mechanism to develop fine structure that tracks baryonic features. The halo and the baryonic disk are dynamically decoupled: the halo formed first, the baryons fell in later, and the halo's radial profile is set by cosmological accretion history, not by the current baryonic distribution. Reproducing Renzo's Rule in ΛCDM requires elaborate baryonic feedback models (adiabatic contraction, supernova-driven outflows) that must be tuned galaxy by galaxy. The correlation is observed to hold across morphological types with no apparent dependence on feedback history.
 
-In the Lagrangian relaxation framing, Renzo's Rule is not a correlation to be explained. **It is a theorem.**
+In the Lagrangian relaxation framing, Renzo's Rule is not a correlation to be explained. **It is a theorem — conditional on the optimization structure.**
 
-The dual variable at each radius is:
+The conditional is important and we state it explicitly: *if* the gravitational field at each radius can be described as solving a locally-defined constrained optimization — with the dual variable at each point set by the local constraint violation — *then* the following derivation is exact. This is the framework asserted in §3–4; its physical justification is the open problem identified in §10.3.
+
+Given that conditional, the dual variable at each radius at the fixed point satisfies complementary slackness:
 
 $$\lambda(r) = \max\left(0,\; a_{\text{obs}}(r) - a_{\text{bary}}(r)\right)$$
 
-at the fixed point. This is complementary slackness: $\lambda(r) > 0$ if and only if $a_{\text{bary}}(r) < a_{\text{obs}}(r)$. The dual variable is a pointwise function of the baryonic acceleration deficit. Therefore:
+This is $\lambda(r) > 0$ if and only if $a_{\text{bary}}(r) < a_{\text{obs}}(r)$. The dual variable is a pointwise function of the baryonic acceleration deficit. Therefore:
 
 1. **If baryonic density increases locally at radius $r$**, then $a_{\text{bary}}(r)$ increases, the constraint deficit shrinks, and $\lambda(r)$ decreases. The "dark matter" contribution drops where baryons contribute more.
 
@@ -196,7 +202,7 @@ at the fixed point. This is complementary slackness: $\lambda(r) > 0$ if and onl
 
 3. **The total acceleration** $a_{\text{total}}(r) = a_{\text{bary}}(r) + \lambda(r)$ therefore tracks $a_{\text{obs}}(r)$ at every radius where the constraint is active, and every feature in $a_{\text{bary}}(r)$ is mirrored — with opposite sign — in $\lambda(r)$, leaving a corresponding feature in $a_{\text{total}}(r)$.
 
-This is not a fit. There are no free parameters. The local coupling between baryonic features and rotation curve features is a structural consequence of the optimization — the dual variable *must* track the baryonic distribution because it is defined by the local constraint violation against that distribution. Any framework where the "dark matter" is a dual variable of a locally-defined constraint will produce Renzo's Rule automatically.
+There are no free parameters in this derivation. The local coupling between baryonic features and rotation curve features is a structural consequence of the optimization — the dual variable *must* track the baryonic distribution because it is defined by the local constraint violation against that distribution. Any framework where the "dark matter" is a dual variable of a locally-defined constraint will produce Renzo's Rule automatically.
 
 The strength of this prediction should be emphasized. MOND also reproduces Renzo's Rule, because its modified gravity law couples directly to the baryonic mass distribution. But in MOND, this is an input — the theory is constructed to be baryonically sourced. In the Lagrangian relaxation framing, the local coupling is an *output* — it follows from complementary slackness applied to a geometric constraint, without any assumption that the dual variable should track baryonic features. It does so because it has no other option: the constraint is what it is, and the price is local.
 
@@ -256,7 +262,7 @@ The black hole spin parameter $a^*$ provides a further test. In a prograde disk 
 
 The DAMA/LIBRA experiment at Gran Sasso has reported an annual modulation in its NaI(Tl) detector event rate for over two decades, peaking in June and reaching a minimum in December. The conventional interpretation is particle dark matter: Earth's orbital velocity adds to the Sun's galactic velocity in June (~30 km/s faster through the halo) and subtracts in December, producing more particle scattering at peak velocity. The modulation is statistically robust. The interpretation is what is contested.
 
-The particle interpretation makes a specific prediction: the modulation should be site-independent. Any sufficiently sensitive NaI detector, anywhere on Earth, should observe the same annual cycle, because the dark matter wind is galactic-scale and the detector material is the same. This prediction has failed. ANAIS-112 (Canfranc, Spain), using NaI(Tl) crystals with comparable sensitivity, found no modulation after three years of observation. COSINE-100 (Yangyang, South Korea) found no modulation after 1.7 years. The signal appears to be specific to Gran Sasso.
+The particle interpretation makes a specific prediction: the modulation should be site-independent. Any sufficiently sensitive NaI detector, anywhere on Earth, should observe the same annual cycle, because the dark matter wind is galactic-scale and the detector material is the same. This prediction has failed. ANAIS-112 (Canfranc, Spain), using NaI(Tl) crystals with comparable sensitivity, found no modulation in a reanalysis of three years of data (Coarasa et al., 2024). COSINE-100 (Yangyang, South Korea) found no statistically significant modulation over its full operational period (October 2016–March 2023). A 2025 joint analysis combining COSINE-100 and ANAIS-112 data across six years of overlap (984 kg·yr total exposure) excludes the DAMA/LIBRA annual modulation signal at **5.3σ** significance (COSINE-100 + ANAIS-112 Collaborations, 2025). The signal appears to be specific to Gran Sasso.
 
 The transfer function interpretation makes the opposite prediction: **the modulation should be site-dependent.** If the detector is not counting particle collisions but responding to the local medium's constraint-binding oscillation — the drive/threshold ratio varying annually as Earth's velocity through the galactic medium changes — then the threshold is set by the local medium's properties. The ~1.4 km of dolomite overburden at Gran Sasso, the muon flux profile, the thermal environment, the specific crystal purity and geometry — all contribute to the medium's transfer function. A different site (different rock, different depth, different muon spectrum) has a different threshold. The drive oscillation is the same everywhere (Earth's orbital velocity), but whether that oscillation crosses the critical band depends on where the local threshold sits.
 
@@ -418,7 +424,7 @@ The structure generalizes. Any system where a signal propagates through a medium
 
 If the framing is wrong, it has consumed one short paper and a notebook. The asymmetry favors exploration.
 
-The thread began with a bowed string producing a tone one octave below its fundamental. The subharmonic emerged not through force but through patience — and that is how the galaxy enters the critical band. But the mechanism itself is agnostic about direction. An accretion disk, flattened under its own pressure, enters from the opposite side: too much force, too much shear, the medium overwhelmed rather than understimulated. Both produce the same mathematical object — a dual variable, a shadow price, a constraint that binds. The dark sector may not be something exotic above the Standard Model or something subtle below it. It may be the price any medium pays when its drive/threshold ratio enters the band where smooth dynamics are no longer available.
+The thread began with a bowed string producing a tone one octave below its fundamental. For the galaxy, the subharmonic emerges through patience — the slow-drive end of the phase diagram, where low acceleration falls below the critical threshold. For the accretion disk, it emerges through force — the high-drive end, where tidal shear overwhelms dissipative capacity. The mechanism is agnostic about direction. Both cases produce the same mathematical object: a dual variable, a shadow price, a constraint that binds. The dark sector may not be something exotic above the Standard Model or something subtle below it. It may be the price any medium pays when its drive/threshold ratio enters the band where smooth dynamics are no longer available.
 
 ---
 
@@ -430,14 +436,17 @@ The thread began with a bowed string producing a tone one octave below its funda
 - Berezhiani, L., & Khoury, J. (2015). Theory of dark matter superfluidity. *Phys. Rev. D*, 92(10), 103510.
 - Bernabei, R. et al. (DAMA/LIBRA Collaboration) (2018). First model independent results from DAMA/LIBRA-phase2. *Nucl. Phys. At. Energy*, 19(4), 307-325. arXiv:1805.10486.
 - Capozziello, S., Matsumoto, J., Nojiri, S., & Odintsov, S. D. (2010). Dark energy from modified gravity with Lagrange multipliers. arXiv:1004.3691v2.
+- Chaichian, M., Klusoň, J., Oksanen, M., & Tureanu, A. (2014). Mimetic dark matter, ghost instability and a mimetic tensor-vector-scalar gravity. *JHEP*, 2014(12), 102. arXiv:1404.4008.
 - Chamseddine, A. H., & Mukhanov, V. (2013). Mimetic dark matter. *JHEP*, 2013(11), 135.
-- Coarasa, I. et al. (ANAIS-112 Collaboration) (2024). ANAIS-112 three years data: a sensitive model independent negative test of the DAMA/LIBRA dark matter signal. *Commun. Phys.*, 7, 345.
+- Chamseddine, A. H., & Mukhanov, V. (2014). Cosmology with mimetic matter. *JCAP*, 2014(6), 017. arXiv:1403.3961.
+- Coarasa, I. et al. (ANAIS-112 Collaboration) (2024). ANAIS-112 three years data: a sensitive model independent negative test of the DAMA/LIBRA dark matter signal. *Commun. Phys.*, 7, 345. arXiv:2311.03392.
+- COSINE-100 and ANAIS-112 Collaborations (2025). Combined annual modulation dark matter search with COSINE-100 and ANAIS-112. arXiv:2503.19559.
 - Derevianko, A., & Pospelov, M. (2014). Hunting for topological dark matter with atomic clocks. *Nature Physics*, 10, 933-936. arXiv:1311.1244.
 - Fisher, M. L. (1981). The Lagrangian relaxation method for solving integer programming problems. *Management Science*, 27(1), 1-18.
 - Giudice, G. F., & McCullough, M. (2017). A Clockwork Theory. *JHEP*, 02, 036. arXiv:1610.07962.
 - Held, M., & Karp, R. M. (1971). The traveling-salesman problem and minimum spanning trees: Part II. *Math. Programming*, 1(1), 6-25.
 - Joven, N. (2026). A content-addressed adaptive knowledge substrate for distributed epistemic coordination. *Preprint*.
-- Kawano, S., Kobayashi, K., Suzuki, T., & Ichiji, N. (2025). Experimental validation of string oscillation in subharmonic generation. arXiv:2502.11902.
+- Kawano, S., Kobayashi, K., Suzuki, T., & Ichiji, N. (2025). Experimental Validation of String Oscillation in Subharmonic Generation. arXiv:2502.11902.
 - McGaugh, S. S., Lelli, F., & Schombert, J. M. (2016). Radial acceleration relation in rotationally supported galaxies. *Phys. Rev. Lett.*, 117(20), 201101.
 - Milgrom, M. (1983). A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis. *ApJ*, 270, 365-370.
 - Navarro, J. F., Frenk, C. S., & White, S. D. M. (1997). A universal density profile from hierarchical clustering. *ApJ*, 490(2), 493-508.
