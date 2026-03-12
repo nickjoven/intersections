@@ -158,15 +158,16 @@ Applied to mimetic gravity: **the dark matter field is the cost the gravitationa
 
 This is exactly what is observed. The mass discrepancy-acceleration relation shows that the "dark matter fraction" increases monotonically as acceleration decreases. The constraint is most expensive to enforce precisely where the baryonic matter provides the least gravitational acceleration.
 
-### 4.3 Why the Low-Acceleration Regime
+### 4.3 When the Constraint Binds
 
-In Lagrangian relaxation, the dual variable is nonzero only when the constraint is active (complementary slackness). In the high-acceleration regime, the gravitational field satisfies the geometric constraint using baryonic matter alone — the constraint is slack, and the dual variable (dark matter) is zero. In the low-acceleration regime, the baryonic matter is insufficient to satisfy the constraint — it becomes active, and the dual variable takes a nonzero value proportional to the violation.
+In Lagrangian relaxation, the dual variable is nonzero only when the constraint is active (complementary slackness). The constraint becomes active — and the dual variable takes a nonzero value — whenever the drive/threshold ratio enters the critical band. In the galactic case, this happens at the low-acceleration end:
 
-This is the stick-slip transition:
-- **High acceleration (fast bow)**: kinetic friction sustained, no stick phase, no subharmonic. Gravity is Newtonian, no dark matter needed.
+- **Mid-range acceleration (fast bow)**: kinetic friction sustained, no stick phase, no subharmonic. Gravity is Newtonian, no dark matter needed.
 - **Low acceleration (slow bow)**: kinetic friction cannot be maintained, system enters stick-slip, subharmonic appears. The geometric constraint binds, the dual variable activates, "dark matter" emerges.
 
-The MOND acceleration scale $a_0$ is the critical velocity of the stick-slip transition — the point at which the gravitational field can no longer satisfy its geometric constraint using baryonic matter alone and must pay a dual-variable cost.
+But complementary slackness is symmetric in the ratio. The constraint can also bind when the drive is strong enough to *overwhelm* the medium's dissipative capacity — the "pressed firmly" regime. An accretion disk around a stellar-mass black hole is a physical system where this occurs. The disk flattens under its own pressure and tidal shear; angular momentum transport is governed by the magnetorotational instability, which activates above a critical wavelength; the resulting turbulent viscosity produces stick-slip-like transitions between laminar and turbulent flow. The dual variable in this system is not dark matter — it is whatever the medium's transfer function must pay to satisfy its own geometric constraint (angular momentum conservation in a flattening geometry under extreme shear). The observable is the QPO, not the halo. But the mechanism — constraint binding, dual variable activation, subharmonic generation — is the same.
+
+The MOND acceleration scale $a_0$ is the critical coupling of the stick-slip transition at galactic scales — the point at which spacetime geometry can no longer satisfy its geometric constraint using baryonic matter alone and must pay a dual-variable cost. Other media have their own critical couplings. The dual variable is universal; the threshold is not.
 
 ---
 
@@ -189,11 +190,17 @@ Lagrangian relaxation can fail to converge if:
 
 Galaxy clusters are the regime where MOND notoriously underperforms — it predicts less dark matter than observed. In the Lagrangian relaxation framing, this could indicate a convergence failure: the optimization problem in galaxy clusters has different structure (multiple interacting constraints, loss of concavity) that prevents the single-constraint relaxation from finding the correct dual value. This would predict that galaxy cluster dark matter requires a multi-constraint formulation — consistent with the observation that cluster dynamics involve additional physics (hot gas, ram pressure, merger history) absent in isolated galaxies.
 
-### 5.3 No Direct Detection
+### 5.3 Strong-Field Subharmonics
+
+If the mechanism is bidirectional, it predicts observable subharmonic signatures in strong-field systems where the drive *exceeds* the medium's dissipative threshold — not only where it falls below. Accretion disks are the sharpest test. The disk is a medium with its own transfer function: angular momentum is transported by turbulent viscosity (driven by the MRI), the disk flattens under pressure and tidal forces, and the geometry imposes conservation constraints that the medium cannot satisfy smoothly when driven too hard. The prediction: QPO frequency ratios (3:2, 2:1, 3:1) should be derivable from the disk's Stribeck-type transfer function — the ratio of orbital shear rate to MRI critical wavelength — without invoking resonance between independent oscillation modes. If the same functional form (drive/threshold ratio → subharmonic spectrum) that fits the MOND interpolating function at galactic scales also fits QPO frequency structure at accretion-disk scales, the structural claim is validated across eighteen orders of magnitude in acceleration.
+
+An accretion disk may be the only astrophysical system that exhibits both entry modes simultaneously: slow-drive subharmonics in the outer disk (where the dark matter problem lives) and force-driven subharmonics in the inner disk (where QPOs are observed). If both arise from the same Stribeck-type transfer function of the disk medium, that is strong evidence that the mechanism is one.
+
+### 5.4 No Direct Detection
 
 If dark matter is a dual variable rather than a primal variable (a substance), direct detection experiments should find nothing. The dual variable has physical effects (it modifies the gravitational field) but is not a particle that carries energy-momentum independently of the constraint it enforces. This is consistent with the null results from XENON, LUX, PandaX, and other direct detection experiments through 2026.
 
-### 5.4 The Bullet Cluster
+### 5.5 The Bullet Cluster
 
 The Bullet Cluster (1E 0657-56) is often cited as evidence for particle dark matter, since the gravitational lensing signal is offset from the visible baryonic matter (hot gas). In the dual-variable framing, this requires that the constraint (and therefore its multiplier) can decouple from the baryonic distribution during violent non-equilibrium events (cluster mergers). This is plausible if the constraint is geometric (tied to the metric) rather than material (tied to the matter distribution) — the metric need not track the gas during a rapid merger. However, this prediction needs quantitative development to be compelling.
 
@@ -256,17 +263,19 @@ To our knowledge, the following specific connections have not appeared in the li
 
 ### 9.1 The Adiabatic Limit
 
-The stick-slip framing identifies a specific regime: the subharmonic emerges when the ratio of coupling strength to drive velocity exceeds a critical value. There are two ways to reach this regime — increase the coupling (press harder) or decrease the velocity (move slower). The universe, we suggest, used the slow method.
+The stick-slip framing identifies a specific regime: the subharmonic emerges when the drive/threshold ratio enters a critical band. There are two ways to enter — decrease the drive below the medium's threshold (slow bow) or increase the drive until it overwhelms the medium's dissipative capacity (pressed firmly). Both produce subharmonics; which mode dominates depends on the medium.
 
-This has a direct experimental consequence. If the dark sector operates below the fundamental frequency of baryonic matter — a subharmonic, not a harmonic — then high-energy colliders are listening for the wrong mode. A collider is the "pressed firmly" approach: accelerate particles to extreme energies and look for new resonances above the electroweak scale. But if the signal is an octave *below* the fundamental, no amount of collision energy will produce it. You need a detector tuned to the low-frequency regime.
+For the galactic dark matter problem, the entry is from below: cosmic expansion is slow, galactic accelerations are small, the gravitational field enters the stick-slip band through patience. For accretion disks, the entry is from above: tidal shear and magnetic pressure exceed the disk's capacity to transport angular momentum smoothly, and the system mode-locks into QPO subharmonics. The mechanism is one; the direction of entry is medium-dependent.
+
+This has a direct experimental consequence. A collider does not fail because force is the wrong approach in general — force-driven subharmonics are real (§2.3, §5.3). A collider fails because it is not tuned to *any* medium's critical band for the gravitational subharmonic. It operates at the electroweak scale, which is neither the slow regime (galactic, $a_0 \sim 10^{-10}$ m/s²) nor the force-driven regime (accretion disk, MRI threshold). It is simply off-resonance. You need a detector tuned to a regime where the drive/threshold ratio actually enters the critical band.
 
 ### 9.2 From High-Energy to Resonant Detection
 
 The shift in detection strategy follows directly from the model:
 
-**Pressed firmly (current approach):** Build larger colliders (LHC, proposed FCC) to force interactions at higher energies. This searches for dark matter as a particle *above* the Standard Model energy scale — a harmonic, not a subharmonic. Decades of null results at colliders and direct detection experiments (XENON, LUX, PandaX) are consistent with the prediction that the signal is not in this regime.
+**Off-resonance (current approach):** Build larger colliders (LHC, proposed FCC) to force interactions at higher energies. This searches for dark matter as a particle at the electroweak scale — neither the slow regime where the galactic subharmonic lives nor the force-driven regime where accretion disk subharmonics live. Decades of null results at colliders and direct detection experiments (XENON, LUX, PandaX) are consistent with this being the wrong critical band entirely.
 
-**Move slowly (proposed approach):** Use instruments that measure quantities drifting slowly over time. If the dark sector oscillates at very low frequencies — the gravitational subharmonic — then "slow" detectors will hear what high-speed colliders miss.
+**On-resonance (proposed approach):** Match the detector to a medium whose drive/threshold ratio is in the critical band. For the galactic subharmonic, this means slow detectors — instruments that measure quantities drifting over time at the gravitational convergence frequency. For the accretion disk subharmonic, the detectors already exist: X-ray timing instruments observing QPO frequency ratios.
 
 Three classes of slow detectors are directly relevant:
 
@@ -289,28 +298,33 @@ The structural correspondence:
 | Gear ratio (static/kinetic friction) | Clockwork ratio $q$ |
 | Number of stick-slip cycles | Number of sites $N$ |
 | "Slow bow" condition | Adiabatic limit of the gear chain |
+| "Pressed firmly" condition | Overdriven gear chain (mode-locking) |
 
-If dark matter is the dual variable of a constrained optimization problem, the clockwork mechanism provides a candidate UV completion: the constraint arises from a chain of fields whose collective low-frequency mode is the subharmonic we observe as the dark matter effect. The exponential suppression explains why $a_0 \approx 1.2 \times 10^{-10}$ m/s² is so far below the Planck or electroweak scales — it is a clockworked-down version of a fundamental-scale coupling, exactly as the subharmonic is a geared-down version of the string's natural frequency.
+If dark matter is the dual variable of a constrained optimization problem, the clockwork mechanism provides a candidate UV completion: the constraint arises from a chain of fields whose collective low-frequency mode is the subharmonic we observe as the dark matter effect. The exponential suppression explains why the galactic threshold $a_0 \approx 1.2 \times 10^{-10}$ m/s² is so far below the Planck or electroweak scales — it is a clockworked-down version of a fundamental-scale coupling, exactly as the subharmonic is a geared-down version of the string's natural frequency. Other media's thresholds (e.g., the MRI critical wavelength in accretion disks) would correspond to different gear ratios $q$ or chain lengths $N$ in the clockwork — the same mechanism producing different critical scales.
 
-### 9.4 Below the Fundamental
+### 9.4 Below the Fundamental, and Beyond It
 
-It has long seemed unsatisfying that dark matter — the dominant gravitational component of the universe — should require explanation as something *additional* to known physics. An extra particle, an extra field, an extra sector. The stick-slip framing offers a different perspective: the dark sector is not above the fundamental. It is below it. Not a new particle at higher energy, but a lower mode of the gravitational field itself, accessed not through force but through the slowness of cosmic expansion.
+It has long seemed unsatisfying that dark matter — the dominant gravitational component of the universe — should require explanation as something *additional* to known physics. An extra particle, an extra field, an extra sector. The stick-slip framing offers a different perspective: the dark sector is not above the fundamental. It is below it — a lower mode of the gravitational field itself, accessed when the drive/threshold ratio enters the critical band.
 
-The universe's expansion rate during structure formation is slow. The gravitational accelerations in galaxy outskirts are small. These are exactly the conditions under which a bowed string produces its subharmonic — not by being driven harder, but by being driven more patiently than the system's natural dissipation timescale. The inflationary slow-roll, the gradual deceleration of cosmic expansion, the adiabatic cooling of the universe — all are "slow bow" conditions. The dark matter halo may be the gravitational octave that emerged when the cosmos moved slowly enough for the stick phase to dominate.
+For galaxies, the entry is from below. The universe's expansion rate during structure formation is slow. The gravitational accelerations in galaxy outskirts are small. These are the conditions under which a bowed string produces its subharmonic — driven more patiently than the system's natural dissipation timescale. The dark matter halo is the gravitational octave that emerged when the cosmos moved slowly enough for the stick phase to dominate.
+
+For accretion disks, the entry is from above. The inner disk is compressed, sheared, and magnetically coupled beyond the medium's capacity for smooth transport. The disk flattens — a geometric constraint asserting itself through pressure — and the system mode-locks into subharmonic oscillation. The QPO is the acoustic octave that emerges when the disk is driven harder than its viscous dissipation can absorb.
+
+The two cases are not separate phenomena requiring separate explanations. They are the same phase diagram entered from opposite corners. The accretion disk is the critical test precisely because it may exhibit both simultaneously: the outer disk, where accelerations are low, enters from the slow side; the inner disk, where pressures are extreme, enters from the force side. One medium, two entry modes, one mechanism. If the Stribeck transfer function of the disk produces both the outer-disk mass discrepancy and the inner-disk QPO spectrum, the framework is not an analogy. It is the dynamics.
 
 ---
 
 ## 10. Conclusion
 
-The cost of this hypothesis is low. It requires no new particles, no new forces, and no modifications to general relativity at the level of the action. It requires only that we read an existing mathematical structure (mimetic gravity's Lagrange multiplier) through an existing mathematical framework (Lagrangian relaxation) motivated by an existing physical phenomenon (stick-slip dynamics in the slow-velocity regime).
+The cost of this hypothesis is low. It requires no new particles, no new forces, and no modifications to general relativity at the level of the action. It requires only that we read an existing mathematical structure (mimetic gravity's Lagrange multiplier) through an existing mathematical framework (Lagrangian relaxation) motivated by an existing physical phenomenon (stick-slip dynamics).
 
-If the framing is correct, it narrows the search space in two ways. Theoretically, the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at which the constraint becomes active. Experimentally, it redirects detection strategy from high-energy colliders to resonant, slow-measurement instruments — atom interferometers, clock networks, mid-band gravitational wave detectors — that are tuned to the subharmonic regime where the signal lives.
+If the framing is correct, it narrows the search space in two ways. Theoretically, the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at galactic scales — one instance of a medium-dependent threshold. Experimentally, it redirects detection strategy from off-resonance instruments (colliders at the electroweak scale) to on-resonance ones — slow detectors (atom interferometers, clock networks, mid-band gravitational wave detectors) for the galactic subharmonic, and X-ray timing for accretion disk subharmonics.
 
-The structure may generalize. Any system where a signal propagates through a scattering medium — and the medium's transfer function has a critical threshold below which it mode-converts the input into lower-frequency artifacts — is a candidate for the same analysis. Atmospheric optics is one such system; the halos produced by point-source headlights in fog are, structurally, the optical analogue of the dark matter halo. Whether this analogy is productive beyond the gravitational case remains to be seen.
+The structure generalizes. Any system where a signal propagates through a medium — and the medium's transfer function has a critical threshold at which it mode-converts the input into subharmonic artifacts — is a candidate for the same analysis. The threshold can be entered from either direction: drive too slow (galaxies) or drive too hard (inner accretion disks). The accretion disk is the strongest test case because it enters from both sides simultaneously, and the observables (rotation curves in the outer disk, QPO frequency ratios in the inner disk) are already measured. Atmospheric optics is another such system; the halos produced by point-source headlights in fog are, structurally, the optical analogue of the dark matter halo. Whether this generalization is productive beyond the gravitational case remains to be seen.
 
 If the framing is wrong, it has consumed one short paper and a notebook. The asymmetry favors exploration.
 
-The thread began with a bowed string producing a tone one octave below its fundamental — not through force, but through patience. The dark sector is not something exotic above the Standard Model. It may be something familiar below it: the gravitational field's own subharmonic, accessed when the universe moved slowly enough for the stick phase to take hold.
+The thread began with a bowed string producing a tone one octave below its fundamental. The subharmonic emerged not through force but through patience — and that is how the galaxy enters the critical band. But the mechanism itself is agnostic about direction. An accretion disk, flattened under its own pressure, enters from the opposite side: too much force, too much shear, the medium overwhelmed rather than understimulated. Both produce the same mathematical object — a dual variable, a shadow price, a constraint that binds. The dark sector may not be something exotic above the Standard Model or something subtle below it. It may be the price any medium pays when its drive/threshold ratio enters the band where smooth dynamics are no longer available.
 
 ---
 
@@ -321,18 +335,17 @@ The thread began with a bowed string producing a tone one octave below its funda
 - Bekenstein, J. D. (2004). Relativistic gravitation theory for the modified Newtonian dynamics paradigm. *Phys. Rev. D*, 70(8), 083509.
 - Berezhiani, L., & Khoury, J. (2015). Theory of dark matter superfluidity. *Phys. Rev. D*, 92(10), 103510.
 - Capozziello, S., Matsumoto, J., Nojiri, S., & Odintsov, S. D. (2010). Dark energy from modified gravity with Lagrange multipliers. arXiv:1004.3691v2.
-- Derevianko, A., & Pospelov, M. (2014). Hunting for topological dark matter with atomic clocks. *Nature Physics*, 10, 933-936. arXiv:1311.1244.
 - Chamseddine, A. H., & Mukhanov, V. (2013). Mimetic dark matter. *JHEP*, 2013(11), 135.
-- Giudice, G. F., & McCullough, M. (2017). A Clockwork Theory. *JHEP*, 02, 036. arXiv:1610.07962.
+- Derevianko, A., & Pospelov, M. (2014). Hunting for topological dark matter with atomic clocks. *Nature Physics*, 10, 933-936. arXiv:1311.1244.
 - Fisher, M. L. (1981). The Lagrangian relaxation method for solving integer programming problems. *Management Science*, 27(1), 1-18.
+- Giudice, G. F., & McCullough, M. (2017). A Clockwork Theory. *JHEP*, 02, 036. arXiv:1610.07962.
 - Held, M., & Karp, R. M. (1971). The traveling-salesman problem and minimum spanning trees: Part II. *Math. Programming*, 1(1), 6-25.
-- Huang, J., et al. (2024). Large language models cannot self-correct reasoning yet. *ICLR 2024*.
 - Joven, N. (2026). A content-addressed adaptive knowledge substrate for distributed epistemic coordination. *Preprint*.
 - McGaugh, S. S., Lelli, F., & Schombert, J. M. (2016). Radial acceleration relation in rotationally supported galaxies. *Phys. Rev. Lett.*, 117(20), 201101.
 - Milgrom, M. (1983). A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis. *ApJ*, 270, 365-370.
+- Navarro, J. F., Frenk, C. S., & White, S. D. M. (1997). A universal density profile from hierarchical clustering. *ApJ*, 490(2), 493-508.
 - Nojiri, S., & Odintsov, S. D. (2014). Mimetic F(R) gravity: inflation, dark energy and bounce. *Mod. Phys. Lett. A*, 29(40), 1450211. arXiv:1408.3561.
 - Roberts, B. M. et al. (2017). Search for domain wall dark matter with atomic clocks on board global positioning system satellites. *Nature Communications*, 8, 1195. arXiv:1704.06844.
-- Navarro, J. F., Frenk, C. S., & White, S. D. M. (1997). A universal density profile from hierarchical clustering. *ApJ*, 490(2), 493-508.
 - Sebastiani, L., Vagnozzi, S., & Myrzakulov, R. (2017). Mimetic gravity: a review of recent developments and applications to cosmology and astrophysics. *Advances in High Energy Physics*, 2017.
 - Sussman, G. J., & Wisdom, J. (1992). Chaotic evolution of the solar system. *Science*, 257(5066), 56-62.
 - Verlinde, E. (2016). Emergent gravity and the dark universe. *SciPost Phys.*, 2(3), 016.
