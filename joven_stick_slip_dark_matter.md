@@ -279,6 +279,8 @@ The cost of this hypothesis is low. It requires no new particles, no new forces,
 
 If the framing is correct, it narrows the search space in two ways. Theoretically, the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at which the constraint becomes active. Experimentally, it redirects detection strategy from high-energy colliders to resonant, slow-measurement instruments — atom interferometers, clock networks, mid-band gravitational wave detectors — that are tuned to the subharmonic regime where the signal lives.
 
+The structure may generalize. Any system where a signal propagates through a scattering medium — and the medium's transfer function has a critical threshold below which it mode-converts the input into lower-frequency artifacts — is a candidate for the same analysis. Atmospheric optics is one such system; the halos produced by point-source headlights in fog are, structurally, the optical analogue of the dark matter halo. Whether this analogy is productive beyond the gravitational case remains to be seen.
+
 If the framing is wrong, it has consumed one short paper and a notebook. The asymmetry favors exploration.
 
 The thread began with a bowed string producing a tone one octave below its fundamental — not through force, but through patience. The dark sector is not something exotic above the Standard Model. It may be something familiar below it: the gravitational field's own subharmonic, accessed when the universe moved slowly enough for the stick phase to take hold.
