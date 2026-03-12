@@ -327,7 +327,33 @@ The two cases are not separate phenomena requiring separate explanations. They a
 
 ---
 
-## 10. Conclusion
+## 10. Open Questions
+
+The following are unresolved. They are listed not as weaknesses to be explained away but as the specific problems whose resolution would determine whether this framework is correct, incomplete, or wrong.
+
+### 10.1 Does It Scale to Cosmology?
+
+The paper operates at galaxy and cluster scales. Particle CDM earns its strongest results at cosmological scales — the CMB acoustic peaks, baryon acoustic oscillations, the matter power spectrum, and the growth of large-scale structure. These are quantitative, precision-tested predictions. The dual-variable framework has not been applied there. Mimetic gravity's Lagrange multiplier does admit cosmological solutions (Sebastiani et al., 2017; Nojiri & Odintsov, 2014 derive inflation, dark energy, and bounce), so the raw formalism can handle cosmological dynamics. But the optimization-theoretic reinterpretation — shadow prices, convergence trajectories, step sizes — has not been developed at that scale. If the framework cannot reproduce the CMB power spectrum or the BAO scale, it fails where it matters most. This is the highest-priority open problem.
+
+### 10.2 Can the Dual Variable Decouple Spatially?
+
+The Bullet Cluster requires the gravitational lensing signal (the "dark matter") to be spatially offset from the baryonic gas after a cluster merger. The qualitative argument (§5.6) — that a geometric constraint tracks the metric, not the gas — is plausible but unmodeled. Collisionless particle dark matter explains the offset naturally: particles pass through each other while gas shocks and decelerates. The dual-variable interpretation needs a simulation showing that the constraint's spatial profile evolves independently of the baryonic distribution during a violent non-equilibrium event. Until that simulation exists, the Bullet Cluster remains the strongest single objection to any non-particle dark matter framework.
+
+### 10.3 From Schematic to Quantitative
+
+The companion notebook demonstrates the mechanism — threshold produces subharmonic, relaxation converges or diverges — but on a parameterized toy model, not on actual gravitational variables. The gap between "the mathematical structure maps" and "here is a rotation curve derived from first principles via Lagrangian relaxation on a realistic mass distribution" is the gap between a hypothesis and a theory. Closing it requires choosing a specific geometric constraint (what is the gravitational field optimizing against?), formulating the dual problem, and solving it on observed baryonic mass profiles to produce predicted rotation curves without free parameters beyond the constraint specification.
+
+### 10.4 Does the Stribeck Transfer Function Generalize to Non-Gravitational Media?
+
+The atmospheric optics case (§10 conclusion, [stribeck-optics](https://github.com/nickjoven/stribeck-optics)) is the most direct non-gravitational test. Point-source headlights in fog produce halos — subharmonic artifacts of the scattering medium's transfer function. The hypothesis: the halo structure is determined by the ratio of the source's spatial frequency content to the medium's critical scattering threshold (mean free path × coherence length), and shaping the emitted beam to avoid the critical band should suppress halo formation. This is experimentally accessible: a structured-illumination headlight, a fog chamber, and a camera. If the Stribeck framework predicts the halo's spatial frequency content from the medium's measured scattering parameters, the generalization holds. If it doesn't, the framework may be specific to gravity and the structural analogy is just an analogy.
+
+### 10.5 Laboratory Validation
+
+The stick-slip mechanism itself can be tested directly. High-speed measurement of a bowed string's phase space during subharmonic generation — mapping the hysteresis loop, characterizing the energy partition between fundamental and subharmonic as a function of bow velocity and pressure — would provide the empirical Stribeck curve against which the gravitational analogue is calibrated. The prediction is specific: the subharmonic onset region in the velocity-pressure phase diagram should be a narrow diagonal band, entry should be possible from both the low-velocity and high-pressure sides, and the energy partition should follow the complementary slackness structure (subharmonic energy nonzero only when the drive/threshold ratio is in the critical band). This experiment requires a bowed string, a high-speed camera, and a force sensor.
+
+---
+
+## 11. Conclusion
 
 The cost of this hypothesis is low. It requires no new particles, no new forces, and no modifications to general relativity at the level of the action. It requires only that we read an existing mathematical structure (mimetic gravity's Lagrange multiplier) through an existing mathematical framework (Lagrangian relaxation) motivated by an existing physical phenomenon (stick-slip dynamics).
 
