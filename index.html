@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stick-Slip Dynamics and the Dark Matter Dual</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --bg2: #12121a;
+  --fg: #e0e0e8;
+  --fg2: #888898;
+  --accent: #6a9fff;
+  --accent2: #ff7a5c;
+  --accent3: #5cffb1;
+  --accent4: #ffd75c;
+  --border: #2a2a3a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h1 { font-size: 1.4em; color: var(--accent); margin-bottom: 4px; }
+h2 { font-size: 1.1em; color: var(--fg); margin: 30px 0 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+h3 { font-size: 0.95em; color: var(--fg2); margin: 15px 0 8px; }
+.subtitle { color: var(--fg2); font-size: 0.85em; margin-bottom: 20px; }
+a { color: var(--accent); }
+
+.panel {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 12px 0;
+}
+.panel canvas {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin: 10px 0;
+}
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.control-group label {
+  font-size: 0.8em;
+  color: var(--fg2);
+}
+.control-group input[type="range"] {
+  width: 180px;
+  accent-color: var(--accent);
+}
+.control-group .value {
+  font-size: 0.8em;
+  color: var(--accent);
+  text-align: right;
+}
+
+.side-by-side {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 800px) {
+  .side-by-side { grid-template-columns: 1fr; }
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 0.8em;
+  margin: 6px 0;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.note {
+  font-size: 0.8em;
+  color: var(--fg2);
+  font-style: italic;
+  margin: 6px 0;
+}
+
+.plotly-chart {
+  width: 100%;
+  height: 320px;
+}
+</style>
+</head>
+<body>
+
+<h1>Stick-Slip Dynamics and the Dark Matter Dual</h1>
+<p class="subtitle">
+  Interactive companion to
+  <a href="joven_stick_slip_dark_matter.md">Joven (2026)</a>.
+  Drag the bow. Watch the dual variable emerge.
+</p>
+
+<!-- ============================================================ -->
+<h2>1. The String and the Galaxy</h2>
+<p class="note">
+  Position along the string = radius from galactic center.
+  Bow contact point = crossover radius (a = a₀).
+  Subharmonic displacement = dark matter density.
+</p>
+
+<div class="panel">
+  <canvas id="stringCanvas" height="200"></canvas>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--accent)"></div> String displacement</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--accent2)"></div> Subharmonic envelope (→ DM halo)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--fg2)"></div> Bow position</div>
+  </div>
+</div>
+
+<div class="panel">
+  <canvas id="galaxyCanvas" height="180"></canvas>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--accent3)"></div> Baryonic acceleration</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--accent2)"></div> Dual variable λ (dark matter)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:var(--accent4)"></div> Observed (v²/r)</div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Bow velocity (slow → subharmonic)</label>
+    <input type="range" id="bowVelocity" min="0.02" max="1.0" step="0.01" value="0.30">
+    <div class="value" id="bowVelocityVal">0.30</div>
+  </div>
+  <div class="control-group">
+    <label>Bow position (→ crossover radius)</label>
+    <input type="range" id="bowPosition" min="0.15" max="0.85" step="0.01" value="0.35">
+    <div class="value" id="bowPositionVal">0.35</div>
+  </div>
+  <div class="control-group">
+    <label>Bow pressure (light)</label>
+    <input type="range" id="bowPressure" min="0.1" max="1.0" step="0.01" value="0.4">
+    <div class="value" id="bowPressureVal">0.40</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>2. Stribeck ≡ MOND: Three Curves, One Shape</h2>
+<p class="note">
+  The Stribeck friction curve, MOND interpolating function, and complementary slackness
+  condition all produce the same threshold transition. Drag a₀ to see the mapping shift.
+</p>
+
+<div class="panel">
+  <div id="threeCurves" class="plotly-chart"></div>
+  <div class="controls">
+    <div class="control-group">
+      <label>Stribeck steepness</label>
+      <input type="range" id="stribeckSteep" min="0.5" max="3.0" step="0.1" value="1.0">
+      <div class="value" id="stribeckSteepVal">1.0</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>3. Lagrangian Relaxation: Convergence</h2>
+<p class="note">
+  The dual variable oscillates around the saddle point.
+  Slow step size → convergence (stable rotation curve).
+  Fast step size → divergence (galaxy cluster regime).
+</p>
+
+<div class="side-by-side">
+  <div class="panel">
+    <h3>Convergent (α₀ = 0.5)</h3>
+    <div id="convergent" class="plotly-chart"></div>
+  </div>
+  <div class="panel">
+    <h3>Divergent (α₀ = 5.0)</h3>
+    <div id="divergent" class="plotly-chart"></div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Step size α₀ (convergent)</label>
+    <input type="range" id="alphaConv" min="0.1" max="2.0" step="0.05" value="0.5">
+    <div class="value" id="alphaConvVal">0.50</div>
+  </div>
+  <div class="control-group">
+    <label>Step size α₀ (divergent)</label>
+    <input type="range" id="alphaDiv" min="1.0" max="10.0" step="0.1" value="5.0">
+    <div class="value" id="alphaDivVal">5.0</div>
+  </div>
+  <div class="control-group">
+    <label>Decay rate</label>
+    <input type="range" id="decayRate" min="0.9" max="1.0" step="0.005" value="0.995">
+    <div class="value" id="decayRateVal">0.995</div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>4. Galaxy Rotation Curve: Dual Variable Profile</h2>
+<p class="note">
+  The dark matter halo profile emerges as the shadow price of the rotation curve constraint.
+  Where baryonic mass is insufficient, the dual variable fills the gap.
+</p>
+
+<div class="panel">
+  <div id="rotationCurve" class="plotly-chart" style="height:380px"></div>
+  <div class="controls">
+    <div class="control-group">
+      <label>Disk scale radius (kpc)</label>
+      <input type="range" id="rScale" min="1.0" max="8.0" step="0.5" value="3.0">
+      <div class="value" id="rScaleVal">3.0</div>
+    </div>
+    <div class="control-group">
+      <label>v_flat (km/s)</label>
+      <input type="range" id="vFlat" min="100" max="300" step="10" value="200">
+      <div class="value" id="vFlatVal">200</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>5. Mass Discrepancy–Acceleration Relation</h2>
+<p class="note">
+  McGaugh et al. (2016). The empirical heart of the dark matter problem.
+  The dual variable activates below a₀ — complementary slackness in action.
+</p>
+
+<div class="panel">
+  <div id="mdar" class="plotly-chart" style="height:380px"></div>
+</div>
+
+<!-- ============================================================ -->
+<p style="margin-top:30px; font-size:0.8em; color:var(--fg2)">
+  Companion to <a href="joven_stick_slip_dark_matter.md">Stick-Slip Dynamics and the Dark Matter Dual</a> (Joven, 2026).
+  Notebook: <a href="stick_slip_lagrangian.ipynb">stick_slip_lagrangian.ipynb</a>.
+  Released under CC0.
+</p>
+
+<script>
+// ============================================================
+// Shared utilities
+// ============================================================
+const plotlyLayout = {
+  paper_bgcolor: '#12121a',
+  plot_bgcolor: '#12121a',
+  font: { family: 'SF Mono, Fira Code, Consolas, monospace', size: 11, color: '#e0e0e8' },
+  margin: { l: 50, r: 20, t: 30, b: 40 },
+  xaxis: { gridcolor: '#2a2a3a', zerolinecolor: '#2a2a3a' },
+  yaxis: { gridcolor: '#2a2a3a', zerolinecolor: '#2a2a3a' },
+  legend: { bgcolor: 'rgba(0,0,0,0)', font: { size: 10 } },
+};
+
+function cloneLayout(overrides) {
+  const l = JSON.parse(JSON.stringify(plotlyLayout));
+  Object.assign(l, overrides);
+  if (overrides.xaxis) Object.assign(l.xaxis, overrides.xaxis);
+  if (overrides.yaxis) Object.assign(l.yaxis, overrides.yaxis);
+  return l;
+}
+
+// ============================================================
+// Section 1: String + Galaxy canvas animation
+// ============================================================
+const stringCanvas = document.getElementById('stringCanvas');
+const stringCtx = stringCanvas.getContext('2d');
+const galaxyCanvas = document.getElementById('galaxyCanvas');
+const galaxyCtx = galaxyCanvas.getContext('2d');
+
+let simTime = 0;
+const DT = 0.02;
+
+// Stick-slip oscillator state — one per spatial segment
+const N_SEGMENTS = 80;
+let segStates = [];
+
+function initSegments() {
+  segStates = [];
+  for (let i = 0; i < N_SEGMENTS; i++) {
+    segStates.push({ x: 0, v: 0 });
+  }
+}
+initSegments();
+
+function stribeckMu(vRel, vThreshold, muS, muK) {
+  const ratio = Math.abs(vRel) / vThreshold;
+  return muK + (muS - muK) * Math.exp(-ratio * ratio);
+}
+
+function stepOscillator(state, bowV, bowForce, vThreshold, naturalFreq, damping) {
+  const muS = 1.2, muK = 0.25;
+  const stiffness = naturalFreq * naturalFreq;
+  const vRel = bowV - state.v;
+  const mu = stribeckMu(vRel, vThreshold, muS, muK);
+  const fFriction = mu * bowForce * Math.sign(vRel);
+  const fSpring = -stiffness * state.x;
+  const fDamp = -damping * state.v;
+  const a = fFriction + fSpring + fDamp;
+  state.v += a * DT;
+  state.x += state.v * DT;
+}
+
+function getControls() {
+  return {
+    bowVelocity: parseFloat(document.getElementById('bowVelocity').value),
+    bowPosition: parseFloat(document.getElementById('bowPosition').value),
+    bowPressure: parseFloat(document.getElementById('bowPressure').value),
+  };
+}
+
+function drawString() {
+  const canvas = stringCanvas;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = canvas.clientWidth * dpr;
+  canvas.height = canvas.clientHeight * dpr;
+  const ctx = stringCtx;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = canvas.clientWidth;
+  const H = canvas.clientHeight;
+
+  const ctrl = getControls();
+  const bowIdx = Math.floor(ctrl.bowPosition * N_SEGMENTS);
+
+  // Step each segment
+  for (let i = 0; i < N_SEGMENTS; i++) {
+    const t = i / N_SEGMENTS;
+    // Segments near bow get driven; farther segments get weaker drive
+    const distFromBow = Math.abs(i - bowIdx) / N_SEGMENTS;
+    const driveStrength = Math.exp(-distFromBow * 8);
+
+    // Natural frequency varies: higher near bridge (i=0), lower toward scroll
+    const naturalFreq = 1.0 + (1.0 - t) * 2.0;
+
+    // Effective bow velocity: reduced away from bow
+    const effBowV = ctrl.bowVelocity * driveStrength;
+    const effPressure = ctrl.bowPressure * driveStrength;
+    const vThreshold = 0.15;
+    const damping = 0.03 + (1 - driveStrength) * 0.1;
+
+    stepOscillator(segStates[i], effBowV, effPressure, vThreshold, naturalFreq, damping);
+  }
+
+  // Clear
+  ctx.fillStyle = '#0a0a0f';
+  ctx.fillRect(0, 0, W, H);
+
+  // Draw rest line
+  const midY = H * 0.5;
+  ctx.strokeStyle = '#2a2a3a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(30, midY);
+  ctx.lineTo(W - 30, midY);
+  ctx.stroke();
+
+  // Draw bow position
+  const bowX = 30 + ctrl.bowPosition * (W - 60);
+  ctx.strokeStyle = '#888898';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(bowX, midY - 70);
+  ctx.lineTo(bowX, midY + 70);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Labels
+  ctx.fillStyle = '#888898';
+  ctx.font = '10px SF Mono, Consolas, monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('bow', bowX, midY - 75);
+  ctx.fillText('bridge', 30, H - 8);
+  ctx.fillText('(inner galaxy)', 30 + (bowX - 30) / 2, H - 8);
+  ctx.fillText('scroll', W - 30, H - 8);
+  ctx.fillText('(outer galaxy)', bowX + (W - 30 - bowX) / 2, H - 8);
+
+  // Compute envelope for subharmonic detection
+  const envelope = [];
+  const windowSize = 5;
+  for (let i = 0; i < N_SEGMENTS; i++) {
+    let maxAmp = 0;
+    for (let j = Math.max(0, i - windowSize); j < Math.min(N_SEGMENTS, i + windowSize); j++) {
+      maxAmp = Math.max(maxAmp, Math.abs(segStates[j].x));
+    }
+    envelope.push(maxAmp);
+  }
+
+  // Draw string displacement
+  const ampScale = 60;
+  ctx.strokeStyle = '#6a9fff';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  for (let i = 0; i < N_SEGMENTS; i++) {
+    const px = 30 + (i / N_SEGMENTS) * (W - 60);
+    const py = midY - segStates[i].x * ampScale;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Draw subharmonic envelope
+  ctx.strokeStyle = '#ff7a5c';
+  ctx.lineWidth = 1;
+  ctx.globalAlpha = 0.6;
+  ctx.beginPath();
+  for (let i = 0; i < N_SEGMENTS; i++) {
+    const px = 30 + (i / N_SEGMENTS) * (W - 60);
+    const py = midY - envelope[i] * ampScale;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  ctx.beginPath();
+  for (let i = 0; i < N_SEGMENTS; i++) {
+    const px = 30 + (i / N_SEGMENTS) * (W - 60);
+    const py = midY + envelope[i] * ampScale;
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+  ctx.globalAlpha = 1.0;
+
+  // Bridge and scroll markers
+  ctx.fillStyle = '#6a9fff';
+  ctx.fillRect(26, midY - 3, 4, 6);
+  ctx.fillRect(W - 30, midY - 3, 4, 6);
+}
+
+function drawGalaxy() {
+  const canvas = galaxyCanvas;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = canvas.clientWidth * dpr;
+  canvas.height = canvas.clientHeight * dpr;
+  const ctx = galaxyCtx;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = canvas.clientWidth;
+  const H = canvas.clientHeight;
+
+  const ctrl = getControls();
+  const rScale = 3.0;
+  const vFlat = 200;
+  const rMax = 50;
+
+  ctx.fillStyle = '#0a0a0f';
+  ctx.fillRect(0, 0, W, H);
+
+  const marginL = 30, marginR = 30;
+  const plotW = W - marginL - marginR;
+  const plotH = H - 40;
+  const baseY = H - 25;
+
+  // Axis
+  ctx.strokeStyle = '#2a2a3a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(marginL, baseY);
+  ctx.lineTo(W - marginR, baseY);
+  ctx.stroke();
+
+  const nPts = 50;
+  const aObs = [], aBary = [], lambdas = [], radii = [];
+
+  // Compute galaxy profile
+  const rPeak = 2.2 * rScale;
+  const xPeak = rPeak / rScale;
+  const mFracPeak = 1.0 - (1.0 + xPeak) * Math.exp(-xPeak);
+  const mTotal = vFlat * vFlat * rPeak / mFracPeak;
+
+  // Scale with bow velocity: lower bow velocity → more dark matter
+  // Map bow velocity to how much baryonic mass "counts"
+  const baryScale = Math.min(1.0, ctrl.bowVelocity * 2.5);
+
+  for (let i = 1; i <= nPts; i++) {
+    const r = rMax * i / nPts;
+    const vObs = vFlat * Math.sqrt(r / (r + rScale * 0.5));
+    const x = r / rScale;
+    const mBary = mTotal * (1.0 - (1.0 + x) * Math.exp(-x)) * baryScale;
+    const aO = vObs * vObs / r;
+    const aB = mBary / (r * r);
+    const lam = Math.max(0, aO - aB);
+    aObs.push(aO);
+    aBary.push(aB);
+    lambdas.push(lam);
+    radii.push(r);
+  }
+
+  const maxA = Math.max(...aObs) * 1.1;
+
+  function toX(r) { return marginL + (r / rMax) * plotW; }
+  function toY(a) { return baseY - (a / maxA) * plotH; }
+
+  // Draw crossover line
+  const crossoverR = ctrl.bowPosition * rMax;
+  const crossX = toX(crossoverR);
+  ctx.strokeStyle = '#888898';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(crossX, baseY);
+  ctx.lineTo(crossX, baseY - plotH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Fill dark matter region
+  ctx.fillStyle = 'rgba(255, 122, 92, 0.15)';
+  ctx.beginPath();
+  for (let i = 0; i < nPts; i++) {
+    const px = toX(radii[i]);
+    const py = toY(aBary[i]);
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  for (let i = nPts - 1; i >= 0; i--) {
+    const px = toX(radii[i]);
+    const py = toY(aObs[i]);
+    ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.fill();
+
+  // Draw observed acceleration
+  ctx.strokeStyle = '#ffd75c';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < nPts; i++) {
+    const px = toX(radii[i]);
+    const py = toY(aObs[i]);
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Draw baryonic acceleration
+  ctx.strokeStyle = '#5cffb1';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  for (let i = 0; i < nPts; i++) {
+    const px = toX(radii[i]);
+    const py = toY(aBary[i]);
+    if (i === 0) ctx.moveTo(px, py);
+    else ctx.lineTo(px, py);
+  }
+  ctx.stroke();
+
+  // Labels
+  ctx.fillStyle = '#888898';
+  ctx.font = '10px SF Mono, Consolas, monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('r (kpc)', W / 2, H - 4);
+  ctx.fillText('a₀', crossX, baseY - plotH - 4);
+}
+
+// ============================================================
+// Section 2: Three curves (Plotly)
+// ============================================================
+function plotThreeCurves() {
+  const steepness = parseFloat(document.getElementById('stribeckSteep').value);
+  const xs = [];
+  const stribeck = [], mond = [], cs = [];
+
+  for (let i = -2; i <= 2; i += 0.02) {
+    const x = Math.pow(10, i);
+    xs.push(x);
+    // Stribeck (normalized coupling strength, high at low x)
+    const muS = 1.0, muK = 0.0;
+    const s = muK + (muS - muK) * Math.exp(-Math.pow(x, 2 * steepness));
+    stribeck.push(s);
+    // MOND complement (dark matter fraction)
+    mond.push(1.0 / (1.0 + x));
+    // Complementary slackness
+    cs.push(1.0 / (1.0 + x * x));
+  }
+
+  const traces = [
+    { x: xs, y: stribeck, name: 'Stribeck (friction)', line: { color: '#6a9fff', width: 2 } },
+    { x: xs, y: mond, name: 'MOND 1/(1+x)', line: { color: '#ff7a5c', width: 2 } },
+    { x: xs, y: cs, name: 'Comp. slackness', line: { color: '#5cffb1', width: 2 } },
+  ];
+
+  const layout = cloneLayout({
+    xaxis: { type: 'log', title: 'x = a/a₀  (or v/v_threshold)', gridcolor: '#2a2a3a' },
+    yaxis: { title: 'coupling / DM fraction', range: [0, 1.05], gridcolor: '#2a2a3a' },
+    title: { text: 'Three transition curves, one shape', font: { size: 12 } },
+    shapes: [{
+      type: 'line', x0: 1, x1: 1, y0: 0, y1: 1,
+      line: { color: '#888898', width: 1, dash: 'dot' }
+    }],
+    annotations: [{
+      x: Math.log10(1), y: 1.02, text: 'x = 1 (threshold)',
+      showarrow: false, font: { size: 9, color: '#888898' }
+    }]
+  });
+
+  Plotly.react('threeCurves', traces, layout, { responsive: true, displayModeBar: false });
+}
+
+// ============================================================
+// Section 3: Convergence (Plotly)
+// ============================================================
+function runLagrangianRelaxation(alpha0, decay, maxIter) {
+  const rScale = 3.0, vFlat = 200, rMax = 50, nShells = 25;
+  const rPeak = 2.2 * rScale;
+  const xPeak = rPeak / rScale;
+  const mFracPeak = 1.0 - (1.0 + xPeak) * Math.exp(-xPeak);
+  const mTotal = vFlat * vFlat * rPeak / mFracPeak;
+
+  const shells = [];
+  for (let i = 1; i <= nShells; i++) {
+    const r = rMax * i / nShells;
+    const vObs = vFlat * Math.sqrt(r / (r + rScale * 0.5));
+    const x = r / rScale;
+    const mBary = mTotal * (1.0 - (1.0 + x) * Math.exp(-x));
+    shells.push({ r, aObs: vObs * vObs / r, aBary: mBary / (r * r) });
+  }
+
+  const lam = new Array(nShells).fill(0);
+  const trackShell = 15; // outer shell
+  const target = shells[trackShell].aObs - shells[trackShell].aBary;
+  const history = [];
+
+  for (let k = 0; k < maxIter; k++) {
+    const alpha = alpha0 * Math.pow(decay, k);
+    for (let i = 0; i < nShells; i++) {
+      const violation = shells[i].aObs - (shells[i].aBary + lam[i]);
+      lam[i] = Math.max(0, lam[i] + alpha * violation);
+    }
+    history.push({ iter: k, lambda: lam[trackShell], target });
+  }
+  return history;
+}
+
+function plotConvergence() {
+  const alphaConv = parseFloat(document.getElementById('alphaConv').value);
+  const alphaDiv = parseFloat(document.getElementById('alphaDiv').value);
+  const decay = parseFloat(document.getElementById('decayRate').value);
+
+  const histConv = runLagrangianRelaxation(alphaConv, decay, 60);
+  const histDiv = runLagrangianRelaxation(alphaDiv, decay, 60);
+
+  function makeTraces(hist) {
+    return [
+      {
+        x: hist.map(h => h.iter), y: hist.map(h => h.lambda),
+        name: 'λ (dual var)', line: { color: '#6a9fff', width: 2 },
+      },
+      {
+        x: [0, hist.length - 1], y: [hist[0].target, hist[0].target],
+        name: 'target (deficit)', line: { color: '#ff7a5c', width: 1, dash: 'dot' },
+      }
+    ];
+  }
+
+  const layoutConv = cloneLayout({
+    xaxis: { title: 'iteration', gridcolor: '#2a2a3a' },
+    yaxis: { title: 'λ at r=40 kpc', gridcolor: '#2a2a3a' },
+    title: { text: `α₀=${alphaConv} — convergent`, font: { size: 11 } },
+    showlegend: false,
+  });
+  const layoutDiv = cloneLayout({
+    xaxis: { title: 'iteration', gridcolor: '#2a2a3a' },
+    yaxis: { title: 'λ at r=40 kpc', gridcolor: '#2a2a3a' },
+    title: { text: `α₀=${alphaDiv} — divergent`, font: { size: 11 } },
+    showlegend: false,
+  });
+
+  Plotly.react('convergent', makeTraces(histConv), layoutConv, { responsive: true, displayModeBar: false });
+  Plotly.react('divergent', makeTraces(histDiv), layoutDiv, { responsive: true, displayModeBar: false });
+}
+
+// ============================================================
+// Section 4: Rotation curve (Plotly)
+// ============================================================
+function plotRotationCurve() {
+  const rScale = parseFloat(document.getElementById('rScale').value);
+  const vFlat = parseFloat(document.getElementById('vFlat').value);
+  const rMax = 50, nShells = 50;
+
+  const rPeak = 2.2 * rScale;
+  const xPeak = rPeak / rScale;
+  const mFracPeak = 1.0 - (1.0 + xPeak) * Math.exp(-xPeak);
+  const mTotal = vFlat * vFlat * rPeak / mFracPeak;
+
+  const radii = [], vObs = [], vBary = [], vDM = [], dmFrac = [];
+
+  for (let i = 1; i <= nShells; i++) {
+    const r = rMax * i / nShells;
+    const vo = vFlat * Math.sqrt(r / (r + rScale * 0.5));
+    const x = r / rScale;
+    const mBary = mTotal * (1.0 - (1.0 + x) * Math.exp(-x));
+    const aO = vo * vo / r;
+    const aB = mBary / (r * r);
+    const lam = Math.max(0, aO - aB);
+    const vb = Math.sqrt(Math.max(0, aB * r));
+    const vd = Math.sqrt(Math.max(0, lam * r));
+
+    radii.push(r);
+    vObs.push(vo);
+    vBary.push(vb);
+    vDM.push(vd);
+    dmFrac.push(aO > 0 ? lam / aO : 0);
+  }
+
+  const traces = [
+    { x: radii, y: vObs, name: 'v_observed (flat)', line: { color: '#ffd75c', width: 2.5 } },
+    { x: radii, y: vBary, name: 'v_baryonic', line: { color: '#5cffb1', width: 2 } },
+    { x: radii, y: vDM, name: 'v from λ (dark matter)', line: { color: '#ff7a5c', width: 2, dash: 'dash' } },
+  ];
+
+  const layout = cloneLayout({
+    xaxis: { title: 'r (kpc)', gridcolor: '#2a2a3a' },
+    yaxis: { title: 'v (km/s)', range: [0, vFlat * 1.2], gridcolor: '#2a2a3a' },
+    title: { text: 'Galaxy rotation curve decomposition', font: { size: 12 } },
+  });
+
+  Plotly.react('rotationCurve', traces, layout, { responsive: true, displayModeBar: false });
+}
+
+// ============================================================
+// Section 5: Mass discrepancy–acceleration relation (Plotly)
+// ============================================================
+function plotMDAR() {
+  const rScale = parseFloat(document.getElementById('rScale').value);
+  const vFlat = parseFloat(document.getElementById('vFlat').value);
+  const rMax = 50, nShells = 50;
+
+  const rPeak = 2.2 * rScale;
+  const xPeak = rPeak / rScale;
+  const mFracPeak = 1.0 - (1.0 + xPeak) * Math.exp(-xPeak);
+  const mTotal = vFlat * vFlat * rPeak / mFracPeak;
+
+  const aBaryArr = [], aObsArr = [];
+  for (let i = 1; i <= nShells; i++) {
+    const r = rMax * i / nShells;
+    const vo = vFlat * Math.sqrt(r / (r + rScale * 0.5));
+    const x = r / rScale;
+    const mBary = mTotal * (1.0 - (1.0 + x) * Math.exp(-x));
+    aBaryArr.push(mBary / (r * r));
+    aObsArr.push(vo * vo / r);
+  }
+
+  // 1:1 line
+  const aMin = Math.min(...aBaryArr) * 0.5;
+  const aMax = Math.max(...aBaryArr) * 2;
+
+  const traces = [
+    {
+      x: aBaryArr, y: aObsArr, mode: 'markers',
+      name: 'galaxy shells',
+      marker: { color: '#ff7a5c', size: 6 }
+    },
+    {
+      x: [aMin, aMax], y: [aMin, aMax],
+      name: '1:1 (no dark matter)',
+      line: { color: '#888898', width: 1, dash: 'dot' },
+    },
+  ];
+
+  const layout = cloneLayout({
+    xaxis: { type: 'log', title: 'a_baryonic (Newtonian prediction)', gridcolor: '#2a2a3a' },
+    yaxis: { type: 'log', title: 'a_observed (from rotation curve)', gridcolor: '#2a2a3a' },
+    title: { text: 'Mass discrepancy–acceleration relation', font: { size: 12 } },
+    annotations: [{
+      x: Math.log10(aMax * 0.8), y: Math.log10(aMax * 0.8),
+      text: 'Newtonian',
+      showarrow: false, font: { size: 9, color: '#888898' },
+      xshift: -40, yshift: 15
+    }, {
+      x: Math.log10(aMin * 2), y: Math.log10(aObsArr[aObsArr.length - 1]),
+      text: 'DM dominated',
+      showarrow: false, font: { size: 9, color: '#ff7a5c' },
+      xshift: 40, yshift: -15
+    }]
+  });
+
+  Plotly.react('mdar', traces, layout, { responsive: true, displayModeBar: false });
+}
+
+// ============================================================
+// Event wiring
+// ============================================================
+function updateLabel(id) {
+  const el = document.getElementById(id);
+  document.getElementById(id + 'Val').textContent = parseFloat(el.value).toFixed(2);
+}
+
+['bowVelocity', 'bowPosition', 'bowPressure'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => updateLabel(id));
+});
+
+document.getElementById('stribeckSteep').addEventListener('input', () => {
+  updateLabel('stribeckSteep');
+  plotThreeCurves();
+});
+
+['alphaConv', 'alphaDiv', 'decayRate'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    updateLabel(id);
+    plotConvergence();
+  });
+});
+
+['rScale', 'vFlat'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    updateLabel(id);
+    plotRotationCurve();
+    plotMDAR();
+  });
+});
+
+// ============================================================
+// Animation loop
+// ============================================================
+function animate() {
+  simTime += DT;
+  drawString();
+  drawGalaxy();
+  requestAnimationFrame(animate);
+}
+
+// Initialize
+plotThreeCurves();
+plotConvergence();
+plotRotationCurve();
+plotMDAR();
+animate();
+</script>
+</body>
+</html>
