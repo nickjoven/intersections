@@ -40,28 +40,52 @@ Neither fix involves changing force. Both modify the relationship between veloci
 
 ---
 
-## 2. The Dark Matter Regime Is the Slow-Bow Regime
+## 2. The Stick-Slip Regime Is a Ratio, Not a Direction
 
-The empirical facts of the dark matter problem locate the anomaly precisely where the stick-slip model predicts:
+The empirical facts of the dark matter problem locate the anomaly where the stick-slip model predicts — but the model is more general than the galactic case alone.
 
-**The anomalous effects appear in the low-acceleration regime.** Galaxy rotation curves deviate from Newtonian predictions not at the center (high acceleration, strong field) but at the outskirts (low acceleration, weak field). The mass discrepancy-acceleration relation (McGaugh et al., 2016) shows that the discrepancy between observed and predicted gravity is a function of acceleration alone, with a characteristic scale $a_0 \approx 1.2 \times 10^{-10}$ m/s².
+### 2.1 The Galactic Instance
 
-**The anomaly does not appear in strong-field systems.** Solar system dynamics, binary pulsars, and strong gravitational lensing near massive objects are well-described by GR without modification. The "dark matter effect" vanishes where acceleration is high — exactly as a stick-slip subharmonic vanishes when bow velocity exceeds the critical threshold.
+Galaxy rotation curves deviate from Newtonian predictions not at the center (high acceleration, strong field) but at the outskirts (low acceleration, weak field). The mass discrepancy-acceleration relation (McGaugh et al., 2016) shows that the discrepancy between observed and predicted gravity is a function of acceleration alone, with a characteristic scale $a_0 \approx 1.2 \times 10^{-10}$ m/s².
 
-**The transition has a characteristic scale, not a sharp boundary.** Milgrom's MOND interpolating function $\mu(x)$, where $x = a/a_0$, transitions smoothly between Newtonian ($\mu \to 1$ for $x \gg 1$) and deep-MOND ($\mu \to x$ for $x \ll 1$) regimes. This smooth transition is characteristic of stick-slip: the Stribeck curve (friction vs. velocity in tribology) shows exactly this shape — a smooth, monotonic transition between static-friction-dominated and kinetic-friction-dominated regimes with a characteristic velocity scale.
+Milgrom's MOND interpolating function $\mu(x)$, where $x = a/a_0$, transitions smoothly between Newtonian ($\mu \to 1$ for $x \gg 1$) and deep-MOND ($\mu \to x$ for $x \ll 1$) regimes. This smooth transition is characteristic of stick-slip: the Stribeck curve (friction vs. velocity in tribology) shows exactly this shape — a smooth, monotonic transition between static-friction-dominated and kinetic-friction-dominated regimes with a characteristic velocity scale.
 
-The mapping:
+### 2.2 The Threshold Is Medium-Dependent
+
+The stick-slip framework does not require the threshold to be a universal constant. It requires a threshold to exist in the medium's transfer function. The Stribeck curve is parameterized by the ratio of drive to threshold — not by the absolute value of either. The critical band can be entered from either direction:
+
+1. **Drive decreases below threshold** (galaxy outskirts: acceleration drops below $a_0$)
+2. **Threshold increases above drive** (a medium with different critical parameters shifts the transition to a new scale)
+
+The value $a_0 \approx 1.2 \times 10^{-10}$ m/s² is the threshold for spacetime geometry at galactic scales. Other media have their own thresholds:
+
+| System | Medium | Drive parameter | Threshold | Subharmonic artifact |
+|---|---|---|---|---|
+| Galaxy | Spacetime geometry | Gravitational acceleration | $a_0$ | Dark matter halo |
+| Accretion disk | Ionized plasma + magnetic fields | Orbital shear rate | MRI critical wavelength | Quasi-periodic oscillations |
+| Atmosphere | Scattering particulates | Source spatial frequency | Mean free path × coherence | Optical halo |
+| Bowed string | Rosin friction layer | Bow velocity | $v_{threshold}$ | Subharmonic tone |
+
+In every case, the subharmonic appears when the drive/threshold ratio enters a critical band. The band is narrow and diagonal in the parameter space (see §2 of the companion visualization): you can enter it by slowing the drive or by changing the medium's coupling. The framework is structural, not numerical — $a_0$ is the galactic instance of a universal mechanism, not a universal constant.
+
+### 2.3 Consequences for Strong-Field Systems
+
+This generalization makes a specific prediction: nonlinear threshold dynamics should produce subharmonic signatures in *any* astrophysical medium, not only in the low-acceleration galactic regime. Accretion disks around compact objects are a natural test case. They are differentially rotating, nonlinear (viscosity, turbulence, magnetic fields), and threshold-rich (the magnetorotational instability activates at a critical wavelength). Quasi-periodic oscillations (QPOs) in black hole X-ray binaries show integer and half-integer frequency ratios — 3:2, 2:1, 3:1 — that are exactly the subharmonic signatures the stick-slip model produces.
+
+The critical distinction: QPO subharmonics arise from the accretion disk's own threshold parameters (MRI activation, viscous-to-thermal timescale ratio, ISCO geometry), not from $a_0$. The acceleration at QPO-producing radii (~$10^8$ m/s² for stellar-mass black holes) is eighteen orders of magnitude above $a_0$. The framework predicts that the *structure* (threshold → subharmonic) is universal while the *threshold value* is medium-dependent. If QPO frequency ratios can be derived from the disk's Stribeck-type transfer function — its own critical drive/threshold ratio — that would validate the structural claim without requiring $a_0$ to appear where it has no business appearing.
+
+### 2.4 The Mapping
 
 | Stick-slip parameter | Gravitational analogue |
 |---|---|
-| Relative velocity | Local gravitational acceleration $a$ |
-| Critical velocity | MOND acceleration scale $a_0$ |
-| Static friction (stick) | Enhanced gravitational coupling (deep-MOND) |
-| Kinetic friction (slip) | Standard Newtonian gravity |
-| Subharmonic energy | "Dark matter" gravitational effect |
-| Damping coefficient | Baryonic matter density / distribution |
+| Relative velocity | Drive/threshold ratio in the relevant medium |
+| Critical velocity | Medium-dependent threshold ($a_0$ at galactic scale) |
+| Static friction (stick) | Enhanced coupling (deep-MOND, MRI-locked) |
+| Kinetic friction (slip) | Standard dynamics (Newtonian, Keplerian) |
+| Subharmonic energy | Anomalous mode (DM halo, QPO, optical halo) |
+| Damping coefficient | Dissipation in the medium |
 
-The subharmonic — energy appearing at a scale the linear theory does not predict — is the dark matter halo.
+The subharmonic — energy appearing at a scale the linear theory does not predict — is the halo. The specific halo (dark matter, quasi-periodic oscillation, optical glare) depends on the medium. The mechanism is one.
 
 ---
 
@@ -220,12 +244,13 @@ To our knowledge, the following specific connections have not appeared in the li
 5. The prediction that galaxy cluster MOND failures correspond to Lagrangian relaxation convergence failures
 6. The identification of the dark matter problem as an adiabatic-limit phenomenon favoring resonant over high-energy detection
 7. The structural correspondence between the clockwork mechanism and stick-slip period doubling
+8. The generalization from a monodirectional threshold ($a < a_0$) to a medium-dependent drive/threshold ratio, unifying galactic dark matter with accretion disk QPOs and atmospheric scattering under one mechanism
 
 ---
 
 ## 9. Experimental Implications: Resonant Detectors, Not Colliders
 
-*This section incorporates observations contributed by Gemini (Google DeepMind) during collaborative review.*
+*This section incorporates observations contributed by Gemini (Google DeepMind) and DeepSeek during collaborative review. The adiabatic limit framing and resonant detection strategy were identified by Gemini. The QPO prediction and accretion disk as test case were identified by DeepSeek; the numerical falsification of $a_0$ as the QPO threshold and the subsequent generalization to medium-dependent thresholds (§2.2–2.3) were developed in response.*
 
 ### 9.1 The Adiabatic Limit
 
