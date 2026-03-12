@@ -14,20 +14,22 @@ We propose a reframing of the dark matter problem through the lens of constraine
 
 ## 1. The Sonic Correction
 
-The stick-slip phenomenon that produces sub-octave tones on a bowed string has been widely mischaracterized — including by one of the present authors — as requiring extreme bow pressure. Working string players (notably at NYU) have clarified the actual mechanism: the subharmonic emerges from **slow bow velocity with light contact pressure**, not from force.
+The stick-slip phenomenon that produces sub-octave tones on a bowed string has been widely mischaracterized — including by one of the present authors — as requiring extreme bow pressure. Working string players (notably at NYU) have clarified that the subharmonic emerges readily from **slow bow velocity with light contact pressure**, not only from force.
 
-This correction is not pedantic. It identifies which parameter governs the transition:
+Recent experimental work confirms that the parameter space is two-dimensional, not one-dimensional. Kawano et al. (2025) used high-speed imaging and finite element simulation to validate subharmonic generation in bowed strings, demonstrating that both increased bow pressure (which amplifies frictional forces, suppressing standard vibrations) and decreased bow velocity (which reduces the drive below the kinetic friction threshold) produce subharmonics. The two paths enter the same regime from opposite sides of the phase diagram: slow velocity with light contact reaches the critical band from below; extreme pressure reaches it from above.
 
-- **Incorrect model**: the threshold is a force threshold. Exceeding a critical pressure drives the system into non-linear response.
-- **Correct model**: the threshold is a *velocity ratio*. Below a critical bow speed, kinetic friction cannot be maintained. The string alternates between static friction (stick — potential energy accumulates) and kinetic friction (slip — energy releases). The period of this cycle is twice the natural period, producing the octave-below subharmonic.
+This correction is not pedantic. It identifies the control surface:
+
+- **Incomplete model**: the threshold is a force threshold alone. Exceeding a critical pressure drives the system into non-linear response.
+- **Complete model**: the threshold is a *ratio* — drive to dissipative capacity. Below a critical bow speed, kinetic friction cannot be maintained; above a critical bow pressure, static friction overwhelms the string's restoring force. In both cases, the string alternates between static friction (stick — potential energy accumulates) and kinetic friction (slip — energy releases). The period of this cycle is twice the natural period, producing the octave-below subharmonic.
 
 The operative parameters are:
 1. **Relative velocity** (bow speed relative to string)
-2. **Coupling strength** (rosin friction coefficient)
+2. **Coupling strength** (rosin friction coefficient / bow pressure)
 3. **Damping** (string/body energy absorption)
-4. **Threshold**: the critical velocity below which static friction dominates
+4. **Threshold**: the critical ratio at which the stick-slip cycle activates
 
-The subharmonic is not forced from above. It emerges from below — from conditions too slow, too quiet, too weakly driven to sustain continuous motion.
+The subharmonic is not forced from one direction. It emerges whenever the drive/threshold ratio enters a critical band — whether by slowing the drive or by overwhelming the medium's capacity for smooth response.
 
 ### 1.1 The Rotor Validation
 
@@ -36,7 +38,7 @@ The same mechanism causes documented mechanical failures in helicopter rotor sys
 1. Adding dampers (modifying the dissipation term)
 2. Changing rotor speed (moving the velocity ratio away from the critical regime)
 
-Neither fix involves changing force. Both modify the relationship between velocity and coupling. This confirms that the control surface is two-dimensional — (velocity ratio, damping coefficient) — not one-dimensional (force).
+Neither fix involves adding force; both modify the relationship between velocity and coupling. Combined with Kawano et al.'s demonstration that increased pressure also produces subharmonics, this confirms that the control surface is two-dimensional — (drive/threshold ratio, damping coefficient) — with the critical band accessible from either the velocity or the pressure axis.
 
 ---
 
@@ -349,7 +351,7 @@ The atmospheric optics case (§10 conclusion, [stribeck-optics](https://github.c
 
 ### 10.5 Laboratory Validation
 
-The stick-slip mechanism itself can be tested directly. High-speed measurement of a bowed string's phase space during subharmonic generation — mapping the hysteresis loop, characterizing the energy partition between fundamental and subharmonic as a function of bow velocity and pressure — would provide the empirical Stribeck curve against which the gravitational analogue is calibrated. The prediction is specific: the subharmonic onset region in the velocity-pressure phase diagram should be a narrow diagonal band, entry should be possible from both the low-velocity and high-pressure sides, and the energy partition should follow the complementary slackness structure (subharmonic energy nonzero only when the drive/threshold ratio is in the critical band). This experiment requires a bowed string, a high-speed camera, and a force sensor.
+Kawano et al. (2025) have taken the first step: high-speed imaging and finite element simulation confirming that both slow velocity and increased pressure produce subharmonics in bowed strings. What remains is the full phase-space characterization — mapping the hysteresis loop, measuring the energy partition between fundamental and subharmonic as a function of bow velocity and pressure jointly, and extracting the empirical Stribeck curve against which the gravitational analogue is calibrated. The prediction is specific: the subharmonic onset region in the velocity-pressure phase diagram should be a narrow diagonal band, entry should be possible from both sides, and the energy partition should follow the complementary slackness structure (subharmonic energy nonzero only when the drive/threshold ratio is in the critical band). This experiment extends Kawano et al.'s setup with a calibrated force sensor to measure bow pressure continuously during subharmonic generation.
 
 ---
 
@@ -371,17 +373,18 @@ The thread began with a bowed string producing a tone one octave below its funda
 
 - Abe, M. et al. (MAGIS-100 Collaboration) (2021). Matter-wave Atomic Gradiometer Interferometric Sensor (MAGIS-100). *Quantum Sci. Technol.*, 6, 044003. arXiv:2104.02835.
 - Badurina, L. et al. (2020). AION: An Atom Interferometer Observatory and Network. *JCAP*, 05, 011. arXiv:1911.11755.
-- Coarasa, I. et al. (ANAIS-112 Collaboration) (2024). ANAIS-112 three years data: a sensitive model independent negative test of the DAMA/LIBRA dark matter signal. *Commun. Phys.*, 7, 345.
 - Bekenstein, J. D. (2004). Relativistic gravitation theory for the modified Newtonian dynamics paradigm. *Phys. Rev. D*, 70(8), 083509.
 - Berezhiani, L., & Khoury, J. (2015). Theory of dark matter superfluidity. *Phys. Rev. D*, 92(10), 103510.
 - Bernabei, R. et al. (DAMA/LIBRA Collaboration) (2018). First model independent results from DAMA/LIBRA-phase2. *Nucl. Phys. At. Energy*, 19(4), 307-325. arXiv:1805.10486.
 - Capozziello, S., Matsumoto, J., Nojiri, S., & Odintsov, S. D. (2010). Dark energy from modified gravity with Lagrange multipliers. arXiv:1004.3691v2.
 - Chamseddine, A. H., & Mukhanov, V. (2013). Mimetic dark matter. *JHEP*, 2013(11), 135.
+- Coarasa, I. et al. (ANAIS-112 Collaboration) (2024). ANAIS-112 three years data: a sensitive model independent negative test of the DAMA/LIBRA dark matter signal. *Commun. Phys.*, 7, 345.
 - Derevianko, A., & Pospelov, M. (2014). Hunting for topological dark matter with atomic clocks. *Nature Physics*, 10, 933-936. arXiv:1311.1244.
 - Fisher, M. L. (1981). The Lagrangian relaxation method for solving integer programming problems. *Management Science*, 27(1), 1-18.
 - Giudice, G. F., & McCullough, M. (2017). A Clockwork Theory. *JHEP*, 02, 036. arXiv:1610.07962.
 - Held, M., & Karp, R. M. (1971). The traveling-salesman problem and minimum spanning trees: Part II. *Math. Programming*, 1(1), 6-25.
 - Joven, N. (2026). A content-addressed adaptive knowledge substrate for distributed epistemic coordination. *Preprint*.
+- Kawano, S., Kobayashi, K., Suzuki, T., & Ichiji, N. (2025). Experimental validation of string oscillation in subharmonic generation. arXiv:2502.11902.
 - McGaugh, S. S., Lelli, F., & Schombert, J. M. (2016). Radial acceleration relation in rotationally supported galaxies. *Phys. Rev. Lett.*, 117(20), 201101.
 - Milgrom, M. (1983). A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis. *ApJ*, 270, 365-370.
 - Navarro, J. F., Frenk, C. S., & White, S. D. M. (1997). A universal density profile from hierarchical clustering. *ApJ*, 490(2), 493-508.
