@@ -79,6 +79,11 @@ The value $a_0 \approx 1.2 \times 10^{-10}$ m/s² is the threshold for spacetime
 | Accretion disk | Ionized plasma + magnetic fields | Orbital shear rate | MRI critical wavelength | Quasi-periodic oscillations |
 | Atmosphere | Scattering particulates | Source spatial frequency | Mean free path × coherence | Optical halo |
 | Bowed string | Rosin friction layer | Bow velocity | $v_{threshold}$ | Subharmonic tone |
+| Fault zone | Crustal rock / fault gouge | Tectonic strain rate | Rate-and-state friction | Earthquake recurrence |
+| AV node | Cardiac tissue | SA node firing rate | Refractory period$^{-1}$ | 2:1, 3:1 heart block |
+| Josephson junction | SIS barrier | AC bias current | Critical current $I_c$ | Shapiro steps ($nhf/2e$) |
+
+The term "stick-slip" was coined by Brace and Byerlee (1966) for seismic fault experiments; the seismic case is the original domain of the mechanism, the galactic case a cross-domain instance.
 
 In every case, the subharmonic appears when the drive/threshold ratio enters a critical band. The band is narrow and diagonal in the parameter space (see §2 of the companion visualization): you can enter it by slowing the drive or by changing the medium's coupling. The framework is structural, not numerical — $a_0$ is the galactic instance of a universal mechanism, not a universal constant.
 
@@ -254,7 +259,7 @@ Galaxy clusters are the regime where MOND notoriously underperforms — it predi
 
 ### 5.4 Strong-Field Subharmonics
 
-If the mechanism is bidirectional, it predicts observable subharmonic signatures in strong-field systems where the drive *exceeds* the medium's dissipative threshold — not only where it falls below. Accretion disks are the sharpest test. The disk is a medium with its own transfer function: angular momentum is transported by turbulent viscosity (driven by the MRI), the disk flattens under pressure and tidal forces, and the geometry imposes conservation constraints that the medium cannot satisfy smoothly when driven too hard. The prediction: QPO frequency ratios (3:2, 2:1, 3:1) should be derivable from the disk's Stribeck-type transfer function — the ratio of orbital shear rate to MRI critical wavelength — without invoking resonance between independent oscillation modes. If the same functional form (drive/threshold ratio → subharmonic spectrum) that fits the MOND interpolating function at galactic scales also fits QPO frequency structure at accretion-disk scales, the structural claim is validated across eighteen orders of magnitude in acceleration.
+If the mechanism is bidirectional, it predicts observable subharmonic signatures in strong-field systems where the drive *exceeds* the medium's dissipative threshold — not only where it falls below. Accretion disks are the sharpest test. The disk is a medium with its own transfer function: angular momentum is transported by turbulent viscosity (driven by the MRI), the disk flattens under pressure and tidal forces, and the geometry imposes conservation constraints that the medium cannot satisfy smoothly when driven too hard. The prediction: QPO frequency ratios (3:2, 2:1, 3:1) should be derivable from the disk's Stribeck-type transfer function — the ratio of orbital shear rate to MRI critical wavelength — without invoking resonance between independent oscillation modes. If the same functional form (drive/threshold ratio → subharmonic spectrum) that fits the MOND interpolating function at galactic scales also fits QPO frequency structure at accretion-disk scales, the structural claim is validated across eighteen orders of magnitude in acceleration. (In the Josephson junction, the same pendulum-equation structure — the Stewart-McCumber model is a driven pendulum, which is the canonical stick-slip oscillator — produces Shapiro steps at exact integer multiples $V_n = nhf/2e$ above the critical current $I_c$. The §3.3 structural identity with a derived rather than merely observed prediction.)
 
 An accretion disk may be the only astrophysical system that exhibits both entry modes simultaneously: slow-drive subharmonics in the outer disk (where the dark matter problem lives) and force-driven subharmonics in the inner disk (where QPOs are observed). If both arise from the same Stribeck-type transfer function of the disk medium, that is strong evidence that the mechanism is one.
 
@@ -446,6 +451,7 @@ The thread began with a bowed string producing a tone one octave below its funda
 - Badurina, L. et al. (2020). AION: An Atom Interferometer Observatory and Network. *JCAP*, 05, 011. arXiv:1911.11755.
 - Bekenstein, J. D. (2004). Relativistic gravitation theory for the modified Newtonian dynamics paradigm. *Phys. Rev. D*, 70(8), 083509.
 - Berezhiani, L., & Khoury, J. (2015). Theory of dark matter superfluidity. *Phys. Rev. D*, 92(10), 103510.
+- Brace, W. F., & Byerlee, J. D. (1966). Stick-slip as a mechanism for earthquakes. *Science*, 153(3739), 990-992.
 - Bernabei, R. et al. (DAMA/LIBRA Collaboration) (2018). First model independent results from DAMA/LIBRA-phase2. *Nucl. Phys. At. Energy*, 19(4), 307-325. arXiv:1805.10486.
 - Capozziello, S., Matsumoto, J., Nojiri, S., & Odintsov, S. D. (2010). Dark energy from modified gravity with Lagrange multipliers. arXiv:1004.3691v2.
 - Chamseddine, A. H., & Mukhanov, V. (2013). Mimetic dark matter. *JHEP*, 2013(11), 135.
