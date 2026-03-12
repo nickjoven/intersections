@@ -196,11 +196,21 @@ If the mechanism is bidirectional, it predicts observable subharmonic signatures
 
 An accretion disk may be the only astrophysical system that exhibits both entry modes simultaneously: slow-drive subharmonics in the outer disk (where the dark matter problem lives) and force-driven subharmonics in the inner disk (where QPOs are observed). If both arise from the same Stribeck-type transfer function of the disk medium, that is strong evidence that the mechanism is one.
 
-### 5.4 No Direct Detection
+### 5.4 The DAMA Modulation as a Drive Oscillation
+
+The DAMA/LIBRA experiment at Gran Sasso has reported an annual modulation in its NaI(Tl) detector event rate for over two decades, peaking in June and reaching a minimum in December. The conventional interpretation is particle dark matter: Earth's orbital velocity adds to the Sun's galactic velocity in June (~30 km/s faster through the halo) and subtracts in December, producing more particle scattering at peak velocity. The modulation is statistically robust. The interpretation is what is contested.
+
+The particle interpretation makes a specific prediction: the modulation should be site-independent. Any sufficiently sensitive NaI detector, anywhere on Earth, should observe the same annual cycle, because the dark matter wind is galactic-scale and the detector material is the same. This prediction has failed. ANAIS-112 (Canfranc, Spain), using NaI(Tl) crystals with comparable sensitivity, found no modulation after three years of observation. COSINE-100 (Yangyang, South Korea) found no modulation after 1.7 years. The signal appears to be specific to Gran Sasso.
+
+The transfer function interpretation makes the opposite prediction: **the modulation should be site-dependent.** If the detector is not counting particle collisions but responding to the local medium's constraint-binding oscillation — the drive/threshold ratio varying annually as Earth's velocity through the galactic medium changes — then the threshold is set by the local medium's properties. The ~1.4 km of dolomite overburden at Gran Sasso, the muon flux profile, the thermal environment, the specific crystal purity and geometry — all contribute to the medium's transfer function. A different site (different rock, different depth, different muon spectrum) has a different threshold. The drive oscillation is the same everywhere (Earth's orbital velocity), but whether that oscillation crosses the critical band depends on where the local threshold sits.
+
+SABRE South, currently being installed 1 km underground in the Stawell Gold Mine outside Melbourne, is designed to test DAMA/LIBRA using the same crystal material from the Southern Hemisphere. The particle interpretation predicts SABRE South will see the same modulation (possibly phase-shifted by 6 months due to hemisphere). The transfer function interpretation predicts it may not — different overburden (metamorphic rock vs. dolomite), different depth, different muon flux, different threshold. If SABRE South reproduces the modulation amplitude and phase, the particle interpretation is strengthened. If it sees a modulation at a different amplitude or does not see one, the medium-dependent threshold interpretation gains a data point: same drive, different medium, different response.
+
+### 5.5 No Direct Detection
 
 If dark matter is a dual variable rather than a primal variable (a substance), direct detection experiments should find nothing. The dual variable has physical effects (it modifies the gravitational field) but is not a particle that carries energy-momentum independently of the constraint it enforces. This is consistent with the null results from XENON, LUX, PandaX, and other direct detection experiments through 2026.
 
-### 5.5 The Bullet Cluster
+### 5.6 The Bullet Cluster
 
 The Bullet Cluster (1E 0657-56) is often cited as evidence for particle dark matter, since the gravitational lensing signal is offset from the visible baryonic matter (hot gas). In the dual-variable framing, this requires that the constraint (and therefore its multiplier) can decouple from the baryonic distribution during violent non-equilibrium events (cluster mergers). This is plausible if the constraint is geometric (tied to the metric) rather than material (tied to the matter distribution) — the metric need not track the gas during a rapid merger. However, this prediction needs quantitative development to be compelling.
 
@@ -254,6 +264,7 @@ To our knowledge, the following specific connections have not appeared in the li
 6. The identification of the dark matter problem as an adiabatic-limit phenomenon favoring resonant over high-energy detection
 7. The structural correspondence between the clockwork mechanism and stick-slip period doubling
 8. The generalization from a monodirectional threshold ($a < a_0$) to a medium-dependent drive/threshold ratio, unifying galactic dark matter with accretion disk QPOs and atmospheric scattering under one mechanism
+9. The reinterpretation of the DAMA/LIBRA annual modulation as a drive oscillation through a medium-dependent critical band, predicting site-dependent (not site-independent) modulation — consistent with the non-replication by ANAIS-112 and COSINE-100
 
 ---
 
@@ -332,8 +343,10 @@ The thread began with a bowed string producing a tone one octave below its funda
 
 - Abe, M. et al. (MAGIS-100 Collaboration) (2021). Matter-wave Atomic Gradiometer Interferometric Sensor (MAGIS-100). *Quantum Sci. Technol.*, 6, 044003. arXiv:2104.02835.
 - Badurina, L. et al. (2020). AION: An Atom Interferometer Observatory and Network. *JCAP*, 05, 011. arXiv:1911.11755.
+- Coarasa, I. et al. (ANAIS-112 Collaboration) (2024). ANAIS-112 three years data: a sensitive model independent negative test of the DAMA/LIBRA dark matter signal. *Commun. Phys.*, 7, 345.
 - Bekenstein, J. D. (2004). Relativistic gravitation theory for the modified Newtonian dynamics paradigm. *Phys. Rev. D*, 70(8), 083509.
 - Berezhiani, L., & Khoury, J. (2015). Theory of dark matter superfluidity. *Phys. Rev. D*, 92(10), 103510.
+- Bernabei, R. et al. (DAMA/LIBRA Collaboration) (2018). First model independent results from DAMA/LIBRA-phase2. *Nucl. Phys. At. Energy*, 19(4), 307-325. arXiv:1805.10486.
 - Capozziello, S., Matsumoto, J., Nojiri, S., & Odintsov, S. D. (2010). Dark energy from modified gravity with Lagrange multipliers. arXiv:1004.3691v2.
 - Chamseddine, A. H., & Mukhanov, V. (2013). Mimetic dark matter. *JHEP*, 2013(11), 135.
 - Derevianko, A., & Pospelov, M. (2014). Hunting for topological dark matter with atomic clocks. *Nature Physics*, 10, 933-936. arXiv:1311.1244.
