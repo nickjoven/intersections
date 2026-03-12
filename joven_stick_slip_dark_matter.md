@@ -12,33 +12,45 @@ We propose a reframing of the dark matter problem through the lens of constraine
 
 ---
 
-## 1. The Sonic Correction
+## 1. Two Ways to Make a String Sing Below Itself
 
-The stick-slip phenomenon that produces sub-octave tones on a bowed string has been widely mischaracterized — including by one of the present authors — as requiring extreme bow pressure. Working string players (notably at NYU) have clarified that the subharmonic emerges readily from **slow bow velocity with light contact pressure**, not only from force.
+A bowed string can produce a tone one octave below its fundamental frequency. The mechanism is stick-slip: the string alternates between static friction (stick — potential energy accumulates under the bow) and kinetic friction (slip — energy releases as the string snaps back). The period of this cycle is twice the natural period, producing the subharmonic.
 
-Recent experimental work confirms that the parameter space is two-dimensional, not one-dimensional. Kawano et al. (2025) used high-speed imaging and finite element simulation to validate subharmonic generation in bowed strings, demonstrating that both increased bow pressure (which amplifies frictional forces, suppressing standard vibrations) and decreased bow velocity (which reduces the drive below the kinetic friction threshold) produce subharmonics. The two paths enter the same regime from opposite sides of the phase diagram: slow velocity with light contact reaches the critical band from below; extreme pressure reaches it from above.
+The question is what controls the transition.
 
-This correction is not pedantic. It identifies the control surface:
+### 1.1 The Experimental Ground Truth
 
-- **Incomplete model**: the threshold is a force threshold alone. Exceeding a critical pressure drives the system into non-linear response.
-- **Complete model**: the threshold is a *ratio* — drive to dissipative capacity. Below a critical bow speed, kinetic friction cannot be maintained; above a critical bow pressure, static friction overwhelms the string's restoring force. In both cases, the string alternates between static friction (stick — potential energy accumulates) and kinetic friction (slip — energy releases). The period of this cycle is twice the natural period, producing the octave-below subharmonic.
+Kawano et al. (2025) resolved this experimentally. Using high-speed imaging to visualize spatial vibration modes and finite element simulation to model the bow-string interaction, they demonstrated that subharmonic generation occurs along **two distinct paths** in the velocity-pressure phase space:
 
-The operative parameters are:
-1. **Relative velocity** (bow speed relative to string)
-2. **Coupling strength** (rosin friction coefficient / bow pressure)
-3. **Damping** (string/body energy absorption)
-4. **Threshold**: the critical ratio at which the stick-slip cycle activates
+1. **Slow bow velocity with light contact pressure.** Below a critical bow speed, kinetic friction cannot be sustained. The string catches, loads, releases. Working string players (notably at NYU) have long known this — the subharmonic emerges from patience, not force.
 
-The subharmonic is not forced from one direction. It emerges whenever the drive/threshold ratio enters a critical band — whether by slowing the drive or by overwhelming the medium's capacity for smooth response.
+2. **Increased bow pressure at moderate velocity.** Kawano et al. showed that amplified frictional force suppresses the standard Helmholtz vibration mode, allowing the subharmonic mode to dominate. The string is overwhelmed rather than understimulated, but the result is the same: stick-slip oscillation at half the fundamental frequency.
 
-### 1.1 The Rotor Validation
+Both paths produce the same observable — a tone one octave below the fundamental with the characteristic spectral signature of period doubling. The two entry points are opposite corners of the same phase diagram. The subharmonic onset region is a narrow diagonal band in velocity-pressure space: you can reach it by moving the bow slowly or by pressing it hard.
+
+### 1.2 The Control Surface
+
+This finding — that one of the present authors initially got wrong by assuming pressure alone governed the transition — identifies the actual control surface. The threshold is not a force threshold or a velocity threshold. It is a **ratio**: drive to dissipative capacity.
+
+| Parameter | Role |
+|---|---|
+| Relative velocity | Drive (bow speed relative to string) |
+| Bow pressure | Coupling strength (normal force × friction coefficient) |
+| Damping | Dissipation (string/body energy absorption) |
+| Critical ratio | Threshold at which the stick-slip cycle activates |
+
+Below the critical ratio (slow drive, low coupling): kinetic friction fails, stick phase dominates, subharmonic emerges from below. Above the critical ratio (strong drive, high coupling): static friction overwhelms the restoring force, stick phase dominates, subharmonic emerges from above. The two regimes produce observationally similar effects because they activate the same nonlinear mechanism — the stick-slip cycle — from opposite sides.
+
+This is the fact that the rest of the paper depends on. Every system examined below — galaxy rotation curves, accretion disk QPOs, atmospheric scattering — is a medium with a drive/threshold ratio that can enter a critical band. The direction of entry varies. The mechanism does not.
+
+### 1.3 The Rotor Validation
 
 The same mechanism causes documented mechanical failures in helicopter rotor systems (ground resonance, lead-lag chatter). The rotor blade's interaction with aerodynamic drag produces stick-slip oscillation when relative velocity enters the critical regime. The subharmonic mode grows because the structure lacks sufficient damping to absorb the energy redistribution. Engineers address this by:
 
 1. Adding dampers (modifying the dissipation term)
 2. Changing rotor speed (moving the velocity ratio away from the critical regime)
 
-Neither fix involves adding force; both modify the relationship between velocity and coupling. Combined with Kawano et al.'s demonstration that increased pressure also produces subharmonics, this confirms that the control surface is two-dimensional — (drive/threshold ratio, damping coefficient) — with the critical band accessible from either the velocity or the pressure axis.
+Both fixes move the drive/threshold ratio out of the critical band. Neither adds force; neither removes it. The control surface is two-dimensional — (drive/threshold ratio, damping coefficient) — with the critical band accessible from either axis, exactly as Kawano et al. demonstrated for the bowed string.
 
 ---
 
