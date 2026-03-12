@@ -20,26 +20,25 @@ The question is what controls the transition.
 
 ### 1.1 The Experimental Ground Truth
 
-Kawano et al. (2025) resolved this experimentally. Using high-speed imaging to visualize spatial vibration modes and finite element simulation to model the bow-string interaction, they confirmed the mechanism underlying the Anomalous Low Frequency (ALF) technique and identified the relevant region of the velocity-pressure parameter space. Their primary experimental finding is **pressure-driven**: increased bow pressure (pressing depth) amplifies frictional forces, suppresses the standard Helmholtz vibration mode, and allows the subharmonic mode to dominate. Their FEM simulations span both bow speed ($v_\text{bow}$) and pressing depth ($d_\text{bow}$), identifying **two regions** in this two-dimensional space that produce subharmonics:
+Kawano et al. (2025) resolved this experimentally. Using high-speed imaging to visualize spatial vibration modes and finite element simulation to model the bow-string interaction, they confirmed the mechanism underlying the Anomalous Low Frequency (ALF) technique and mapped the relevant region of the velocity-pressure parameter space. Their FEM simulations span both bow speed ($v_\text{bow}$) and pressing depth ($d_\text{bow}$), identifying **two distinct paths** through this two-dimensional space that each produce subharmonics independently:
 
-1. **Slow bow velocity with sufficient contact pressure.** When $v_\text{bow}$ drops below a critical value while maintaining adequate pressing depth, the Helmholtz mode breaks down and the stick-slip cycle dominates. Kawano et al.'s simulations show this as the low-$v_\text{bow}$, deep-$d_\text{bow}$ region of their phase diagram.
+1. **Slow bow velocity.** When $v_\text{bow}$ drops below a critical value, kinetic friction cannot be sustained — the string catches before the bow has moved enough to maintain the slip phase. The Helmholtz mode breaks down from below. This is the understimulated regime: insufficient drive to sustain smooth sliding.
 
-2. **Increased bow pressure at moderate velocity.** Amplified frictional force from deep pressing depth suppresses the standard Helmholtz vibration mode, allowing the subharmonic mode to dominate. This is the experimentally confirmed path: the string is overwhelmed by coupling force.
+2. **Increased bow pressure.** When $d_\text{bow}$ exceeds a critical value at moderate velocity, amplified frictional force suppresses the standard Helmholtz vibration mode and allows the subharmonic mode to dominate. The string is overwhelmed rather than understimulated. This is the overstimulated regime: excessive coupling that the medium cannot dissipate smoothly.
 
-Both regions produce the same observable — a tone one octave below the fundamental with the characteristic spectral signature of period doubling. The subharmonic onset region occupies a band in the two-dimensional (velocity, pressure) phase space: it can be entered by slowing the bow, by pressing harder, or by some combination of both. Neither parameter alone is sufficient; the relevant quantity is their ratio to the medium's dissipative threshold.
+These are not two sides of the same ratio — they are **two independent causal branches** that converge on the same output: stick-slip oscillation at half the fundamental frequency. The structure is that of a bifurcation in a directed graph: two separate input paths (velocity-entry, pressure-entry) leading to the same downstream node (subharmonic generation). Both paths produce the same observable — a tone one octave below the fundamental with the characteristic spectral signature of period doubling. The subharmonic onset region in the phase diagram is a band accessible from either axis.
 
 ### 1.2 The Control Surface
 
-This finding — that one of the present authors initially got wrong by treating pressure as the sole control variable — identifies the actual control surface. The threshold is not a force threshold or a velocity threshold in isolation. It is a **ratio**: drive to dissipative capacity.
+This finding — that one of the present authors initially got wrong by treating pressure as the sole control variable — identifies the actual control surface. It is **two-dimensional**: a velocity axis and a pressure axis, each with its own independent threshold. Each axis has a critical value; crossing either threshold, by sufficiently different means, can drive the system into the stick-slip regime.
 
-| Parameter | Role |
-|---|---|
-| Relative velocity | Drive (bow speed relative to string) |
-| Bow pressure | Coupling strength (normal force × friction coefficient) |
-| Damping | Dissipation (string/body energy absorption) |
-| Critical ratio | Threshold at which the stick-slip cycle activates |
+| Parameter | Role | Critical crossing |
+|---|---|---|
+| Relative velocity | Drive (bow speed relative to string) | Too slow → kinetic friction fails → stick phase from below |
+| Bow pressure | Coupling strength (normal force × friction coefficient) | Too high → static friction overwhelms restoring force → stick phase from above |
+| Damping | Dissipation (string/body energy absorption) | Mediates which crossing is accessible |
 
-Below the critical ratio (slow drive, low coupling): kinetic friction fails, stick phase dominates, subharmonic emerges from below. Above the critical ratio (strong drive, high coupling): static friction overwhelms the restoring force, stick phase dominates, subharmonic emerges from above. The two regimes produce observationally similar effects because they activate the same nonlinear mechanism — the stick-slip cycle — from opposite sides.
+The two regimes produce observationally similar effects because they activate the same nonlinear mechanism — the stick-slip cycle — from opposite sides of the phase diagram. This is the bifurcation structure: the subharmonic node in the output has two independent upstream paths, not one common cause. Whether a particular physical system enters via the velocity path or the pressure path depends on which threshold it can reach with its available driving parameters.
 
 This is the fact that the rest of the paper depends on. Every system examined below — galaxy rotation curves, accretion disk QPOs, atmospheric scattering — is a medium with a drive/threshold ratio that can enter a critical band. The direction of entry varies. The mechanism does not.
 
