@@ -166,7 +166,44 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>2. Stribeck ≡ MOND: Three Curves, One Shape</h2>
+<h2>2. Velocity × Pressure: The Regime Map</h2>
+<p class="note">
+  The subharmonic does not emerge from extreme pressure. It emerges from slow velocity
+  with light-to-moderate pressure. This heatmap shows the period ratio across the full
+  parameter space. The crosshair tracks your current sliders. The subharmonic regime
+  (ratio ≈ 2, red) sits in the slow+light quadrant — not the loud one.
+</p>
+
+<div class="side-by-side">
+  <div class="panel">
+    <canvas id="phaseCanvas" height="360"></canvas>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-swatch" style="background:#1a1a2e"></div> Locked/static</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#6a9fff"></div> Fundamental (ratio ≈ 1)</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#ff7a5c"></div> Subharmonic (ratio ≈ 2)</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#ffd75c"></div> Transitional</div>
+    </div>
+  </div>
+  <div class="panel">
+    <h3>What the regime map shows</h3>
+    <p style="font-size:0.85em; color:var(--fg2); line-height:1.7">
+      <strong style="color:var(--accent2)">The subharmonic band is narrow and diagonal.</strong>
+      It requires a specific velocity/pressure ratio — not maximum force.
+      Too fast: the string slips continuously (fundamental).
+      Too slow: the string locks to the bow (static).
+      Too heavy: energy dissipates before the period can double.
+      Too light: insufficient coupling to maintain stick phase.<br><br>
+      <strong style="color:var(--accent)">This is the MOND regime.</strong>
+      Dark matter effects don't appear in extreme gravitational fields
+      (black holes, neutron stars) or in negligible fields (empty space).
+      They appear in a specific low-acceleration band — the gravitational
+      analogue of this diagonal sweet spot.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<h2>3. Stribeck ≡ MOND: Three Curves, One Shape</h2>
 <p class="note">
   The Stribeck friction curve, MOND interpolating function, and complementary slackness
   condition all produce the same threshold transition. Drag a₀ to see the mapping shift.
@@ -184,7 +221,7 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>3. Lagrangian Relaxation: Convergence</h2>
+<h2>4. Lagrangian Relaxation: Convergence</h2>
 <p class="note">
   The dual variable oscillates around the saddle point.
   Slow step size → convergence (stable rotation curve).
@@ -221,7 +258,7 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>4. Galaxy Rotation Curve: Dual Variable Profile</h2>
+<h2>5. Galaxy Rotation Curve: Dual Variable Profile</h2>
 <p class="note">
   The dark matter halo profile emerges as the shadow price of the rotation curve constraint.
   Where baryonic mass is insufficient, the dual variable fills the gap.
@@ -244,7 +281,7 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>5. Mass Discrepancy–Acceleration Relation</h2>
+<h2>6. Mass Discrepancy–Acceleration Relation</h2>
 <p class="note">
   McGaugh et al. (2016). The empirical heart of the dark matter problem.
   The dual variable activates below a₀ — complementary slackness in action.
@@ -799,6 +836,198 @@ function plotMDAR() {
 }
 
 // ============================================================
+// Section 2: Velocity × Pressure phase diagram (Canvas)
+// ============================================================
+const phaseCanvas = document.getElementById('phaseCanvas');
+const phaseCtx = phaseCanvas.getContext('2d');
+
+// Precompute phase map: run a mini stick-slip sim for each (velocity, pressure) pair
+// and measure the period ratio
+let phaseMapData = null;
+
+function computePhaseMap() {
+  const nV = 40, nP = 30;
+  const vMin = 0.02, vMax = 1.0;
+  const pMin = 0.1, pMax = 1.2;
+  const data = { nV, nP, vMin, vMax, pMin, pMax, ratios: [] };
+
+  for (let iv = 0; iv < nV; iv++) {
+    const row = [];
+    const bowV = vMin + (vMax - vMin) * iv / (nV - 1);
+    for (let ip = 0; ip < nP; ip++) {
+      const bowP = pMin + (pMax - pMin) * ip / (nP - 1);
+      // Run a quick sim
+      const ratio = quickSimPeriodRatio(bowV, bowP);
+      row.push(ratio);
+    }
+    data.ratios.push(row);
+  }
+  return data;
+}
+
+function quickSimPeriodRatio(bowV, bowP) {
+  // Lightweight stick-slip sim — just enough to estimate period
+  const muS = 1.2, muK = 0.25, vThr = 0.15, damp = 0.02, k = 1.0;
+  const dt = 0.0005;
+  const nSteps = 80000;
+  let x = 0, v = 0;
+  const crossings = [];
+  let prevX = 0;
+  const startAt = nSteps * 0.5; // ignore transient
+
+  for (let i = 0; i < nSteps; i++) {
+    const vRel = bowV - v;
+    const vRatio = Math.abs(vRel) / vThr;
+    const mu = muK + (muS - muK) * Math.exp(-vRatio * vRatio);
+    const fFric = mu * bowP * (vRel >= 0 ? 1 : -1);
+    const a = fFric - k * x - damp * v;
+    v += a * dt;
+    x += v * dt;
+
+    if (i > startAt && prevX * x < 0 && prevX !== 0) {
+      const frac = prevX / (prevX - x);
+      crossings.push((i - 1 + frac) * dt);
+    }
+    prevX = x;
+  }
+
+  if (crossings.length < 6) return 0; // locked
+  const halfPeriods = [];
+  for (let i = 1; i < crossings.length; i++) {
+    halfPeriods.push(crossings[i] - crossings[i - 1]);
+  }
+  const avgHalf = halfPeriods.reduce((a, b) => a + b, 0) / halfPeriods.length;
+  const T = 2.0 * avgHalf;
+  const T0 = 2 * Math.PI; // natural period for k=1, m=1
+  return T / T0;
+}
+
+function drawPhaseMap() {
+  if (!phaseMapData) phaseMapData = computePhaseMap();
+  const data = phaseMapData;
+
+  const canvas = phaseCanvas;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = canvas.clientWidth * dpr;
+  canvas.height = canvas.clientHeight * dpr;
+  const ctx = phaseCtx;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = canvas.clientWidth;
+  const H = canvas.clientHeight;
+
+  const marginL = 60, marginR = 20, marginT = 20, marginB = 40;
+  const plotW = W - marginL - marginR;
+  const plotH = H - marginT - marginB;
+
+  ctx.fillStyle = '#0a0a0f';
+  ctx.fillRect(0, 0, W, H);
+
+  const cellW = plotW / data.nV;
+  const cellH = plotH / data.nP;
+
+  // Color map: ratio → color
+  function ratioColor(r) {
+    if (r < 0.3) return [26, 26, 46, 255];       // locked — dark
+    if (r < 1.3) {                                  // fundamental — blue
+      const t = Math.max(0, (r - 0.5) / 0.8);
+      return [30 + t * 76, 60 + t * 99, 120 + t * 135, 255];
+    }
+    if (r < 1.7) {                                  // transitional — yellow
+      const t = (r - 1.3) / 0.4;
+      return [255, 200 + t * 15, 60 + t * 32, 255];
+    }
+    if (r < 2.3) {                                  // SUBHARMONIC — red/orange
+      const t = 1.0 - Math.abs(r - 2.0) / 0.3;
+      return [255, Math.floor(80 + (1 - t) * 42), Math.floor(60 + (1 - t) * 32), Math.min(255, Math.floor(180 + t * 75))];
+    }
+    return [120, 60, 120, 255];                     // chaotic — purple
+  }
+
+  // Draw heatmap cells
+  for (let iv = 0; iv < data.nV; iv++) {
+    for (let ip = 0; ip < data.nP; ip++) {
+      const ratio = data.ratios[iv][ip];
+      const c = ratioColor(ratio);
+      ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${c[3] / 255})`;
+      const px = marginL + iv * cellW;
+      const py = marginT + (data.nP - 1 - ip) * cellH; // flip Y: pressure increases upward
+      ctx.fillRect(px, py, cellW + 0.5, cellH + 0.5);
+    }
+  }
+
+  // Axis labels
+  ctx.fillStyle = '#888898';
+  ctx.font = '10px SF Mono, Consolas, monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText('bow velocity →', marginL + plotW / 2, H - 5);
+
+  ctx.save();
+  ctx.translate(12, marginT + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('bow pressure →', 0, 0);
+  ctx.restore();
+
+  // Tick labels
+  ctx.textAlign = 'center';
+  for (let i = 0; i <= 4; i++) {
+    const v = data.vMin + (data.vMax - data.vMin) * i / 4;
+    const px = marginL + (i / 4) * plotW;
+    ctx.fillText(v.toFixed(2), px, H - 22);
+  }
+  ctx.textAlign = 'right';
+  for (let i = 0; i <= 4; i++) {
+    const p = data.pMin + (data.pMax - data.pMin) * i / 4;
+    const py = marginT + plotH - (i / 4) * plotH;
+    ctx.fillText(p.toFixed(1), marginL - 6, py + 4);
+  }
+
+  // Crosshair at current slider values
+  const ctrl = getControls();
+  const crossV = (ctrl.bowVelocity - data.vMin) / (data.vMax - data.vMin);
+  const crossP = (ctrl.bowPressure - data.pMin) / (data.pMax - data.pMin);
+  const crossX = marginL + crossV * plotW;
+  const crossY = marginT + plotH - crossP * plotH;
+
+  ctx.strokeStyle = '#ffffff';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3, 3]);
+  ctx.beginPath();
+  ctx.moveTo(crossX, marginT);
+  ctx.lineTo(crossX, marginT + plotH);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(marginL, crossY);
+  ctx.lineTo(marginL + plotW, crossY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Crosshair dot
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.arc(crossX, crossY, 4, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = '#000000';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Label at crosshair
+  const civ = Math.min(data.nV - 1, Math.max(0, Math.round(crossV * (data.nV - 1))));
+  const cip = Math.min(data.nP - 1, Math.max(0, Math.round(crossP * (data.nP - 1))));
+  const currentRatio = data.ratios[civ][cip];
+  let regimeLabel = 'locked';
+  if (currentRatio >= 0.5 && currentRatio < 1.3) regimeLabel = 'fundamental';
+  else if (currentRatio >= 1.3 && currentRatio < 1.7) regimeLabel = 'transitional';
+  else if (currentRatio >= 1.7 && currentRatio < 2.3) regimeLabel = 'SUBHARMONIC';
+  else if (currentRatio >= 2.3) regimeLabel = 'chaotic';
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '11px SF Mono, Consolas, monospace';
+  ctx.textAlign = 'left';
+  const labelX = crossX + 8 > marginL + plotW - 80 ? crossX - 90 : crossX + 8;
+  ctx.fillText(`${regimeLabel} (${currentRatio.toFixed(2)})`, labelX, crossY - 8);
+}
+
+// ============================================================
 // Event wiring
 // ============================================================
 function updateLabel(id) {
@@ -807,7 +1036,10 @@ function updateLabel(id) {
 }
 
 ['bowVelocity', 'bowPosition', 'bowPressure'].forEach(id => {
-  document.getElementById(id).addEventListener('input', () => updateLabel(id));
+  document.getElementById(id).addEventListener('input', () => {
+    updateLabel(id);
+    drawPhaseMap(); // update crosshair position
+  });
 });
 
 document.getElementById('stribeckSteep').addEventListener('input', () => {
@@ -845,6 +1077,8 @@ plotThreeCurves();
 plotConvergence();
 plotRotationCurve();
 plotMDAR();
+// Phase map computed once (expensive), then just redraws crosshair on slider change
+drawPhaseMap();
 animate();
 </script>
 </body>
