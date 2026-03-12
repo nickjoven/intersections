@@ -8,7 +8,7 @@ March 2026
 
 ## Abstract
 
-We propose a reframing of the dark matter problem through the lens of constrained optimization. The observed anomalous gravitational effects in the low-acceleration regime — galaxy rotation curves, the Tully-Fisher relation, the mass discrepancy-acceleration relation — exhibit threshold behavior structurally identical to stick-slip dynamics in mechanical systems. We show that this is not merely an analogy: the stick-slip transition is a specific instance of relaxation oscillation whose mathematical structure maps onto Lagrangian relaxation, an optimization technique in which hard constraints are replaced by penalty terms and iteratively tightened. We connect this to Chamseddine and Mukhanov's mimetic gravity (2013), in which a Lagrange multiplier enforcing a constraint on a scalar field produces cold-dark-matter-like behavior, and argue that the multiplier admits a dual interpretation as a shadow price — the cost the gravitational field pays to satisfy a constraint it cannot meet in the visible-matter variables alone. The dark matter "substance" is, in this framing, the dual variable of a constrained optimization problem. We provide a computational demonstration using Lagrangian relaxation on a parameterized gravitational potential, showing that threshold-dependent energy redistribution across scales emerges naturally from the optimization structure. The three-body problem alone reminds us that exact fidelity with observable matter dynamics is not available to us; the question is whether this framing narrows the search space more than particle-only models.
+We propose a reframing of the dark matter problem through the lens of constrained optimization. The observed anomalous gravitational effects in the low-acceleration regime — galaxy rotation curves, the Tully-Fisher relation, the mass discrepancy-acceleration relation — exhibit threshold behavior structurally identical to stick-slip dynamics in mechanical systems. We show that this is not merely an analogy: the stick-slip transition is a specific instance of relaxation oscillation whose mathematical structure maps onto Lagrangian relaxation, an optimization technique in which hard constraints are replaced by penalty terms and iteratively tightened. We connect this to Chamseddine and Mukhanov's mimetic gravity (2013), in which a Lagrange multiplier enforcing a constraint on a scalar field produces cold-dark-matter-like behavior, and argue that the multiplier admits a dual interpretation as a shadow price — the cost the gravitational field pays to satisfy a constraint it cannot meet in the visible-matter variables alone. The dark matter "substance" is, in this framing, the dual variable of a constrained optimization problem. We provide a computational demonstration using Lagrangian relaxation on a parameterized gravitational potential, showing that threshold-dependent energy redistribution across scales emerges naturally from the optimization structure. Because the shadow price is local — defined at each radius by the local constraint violation — the framework produces Renzo's Rule (Sancisi, 2004) as a theorem: every feature in the baryonic luminosity profile is necessarily mirrored in the rotation curve, because the dual variable at each point is determined by the local baryonic acceleration deficit. This is the sharpest distinction from particle dark matter, where smooth, dynamically decoupled halos offer no mechanism for such fine-grained baryonic-dynamical coupling. The three-body problem alone reminds us that exact fidelity with observable matter dynamics is not available to us; the question is whether this framing narrows the search space more than particle-only models.
 
 ---
 
@@ -172,9 +172,35 @@ Applied to mimetic gravity: **the dark matter field is the cost the gravitationa
 
 The dark matter halo profile is therefore not an arbitrary density distribution — it is shaped by the optimization landscape. Specifically, it should reflect the structure of the dual problem: where the constraint is most binding (galaxy outskirts, low acceleration), the dual variable (dark matter density) is largest.
 
-This is exactly what is observed. The mass discrepancy-acceleration relation shows that the "dark matter fraction" increases monotonically as acceleration decreases. The constraint is most expensive to enforce precisely where the baryonic matter provides the least gravitational acceleration.
+This is exactly what is observed. The mass discrepancy-acceleration relation (McGaugh, Lelli & Schombert, 2016) shows that the "dark matter fraction" increases monotonically as acceleration decreases. The constraint is most expensive to enforce precisely where the baryonic matter provides the least gravitational acceleration.
 
-### 4.3 When the Constraint Binds
+### 4.3 Renzo's Rule: The Local Test
+
+The mass discrepancy-acceleration relation is a global statistical trend — averaged over many galaxies, the dark matter fraction correlates with total acceleration. But because the shadow price is **local** — defined independently at each radius by the constraint violation at that radius — the framework makes a much stronger prediction.
+
+Renzo's Rule (Sancisi, 2004) is the empirical observation that for every feature in the baryonic luminosity profile of a galaxy, there is a corresponding feature in the rotation curve, and vice versa. A bump in surface brightness at some radius produces a bump in the rotation curve at the same radius. A dip in baryonic density produces a dip in rotational velocity. The correspondence is detailed, galaxy-by-galaxy, radius-by-radius.
+
+This is difficult for particle dark matter. An NFW halo (Navarro, Frenk & White, 1997) is smooth — it has no mechanism to develop fine structure that tracks baryonic features. The halo and the baryonic disk are dynamically decoupled: the halo formed first, the baryons fell in later, and the halo's radial profile is set by cosmological accretion history, not by the current baryonic distribution. Reproducing Renzo's Rule in ΛCDM requires elaborate baryonic feedback models (adiabatic contraction, supernova-driven outflows) that must be tuned galaxy by galaxy. The correlation is observed to hold across morphological types with no apparent dependence on feedback history.
+
+In the Lagrangian relaxation framing, Renzo's Rule is not a correlation to be explained. **It is a theorem.**
+
+The dual variable at each radius is:
+
+$$\lambda(r) = \max\left(0,\; a_{\text{obs}}(r) - a_{\text{bary}}(r)\right)$$
+
+at the fixed point. This is complementary slackness: $\lambda(r) > 0$ if and only if $a_{\text{bary}}(r) < a_{\text{obs}}(r)$. The dual variable is a pointwise function of the baryonic acceleration deficit. Therefore:
+
+1. **If baryonic density increases locally at radius $r$**, then $a_{\text{bary}}(r)$ increases, the constraint deficit shrinks, and $\lambda(r)$ decreases. The "dark matter" contribution drops where baryons contribute more.
+
+2. **If baryonic density decreases locally at radius $r$**, then $a_{\text{bary}}(r)$ decreases, the deficit grows, and $\lambda(r)$ increases. The dual variable fills the gap.
+
+3. **The total acceleration** $a_{\text{total}}(r) = a_{\text{bary}}(r) + \lambda(r)$ therefore tracks $a_{\text{obs}}(r)$ at every radius where the constraint is active, and every feature in $a_{\text{bary}}(r)$ is mirrored — with opposite sign — in $\lambda(r)$, leaving a corresponding feature in $a_{\text{total}}(r)$.
+
+This is not a fit. There are no free parameters. The local coupling between baryonic features and rotation curve features is a structural consequence of the optimization — the dual variable *must* track the baryonic distribution because it is defined by the local constraint violation against that distribution. Any framework where the "dark matter" is a dual variable of a locally-defined constraint will produce Renzo's Rule automatically.
+
+The strength of this prediction should be emphasized. MOND also reproduces Renzo's Rule, because its modified gravity law couples directly to the baryonic mass distribution. But in MOND, this is an input — the theory is constructed to be baryonically sourced. In the Lagrangian relaxation framing, the local coupling is an *output* — it follows from complementary slackness applied to a geometric constraint, without any assumption that the dual variable should track baryonic features. It does so because it has no other option: the constraint is what it is, and the price is local.
+
+### 4.4 When the Constraint Binds
 
 In Lagrangian relaxation, the dual variable is nonzero only when the constraint is active (complementary slackness). The constraint becomes active — and the dual variable takes a nonzero value — whenever the drive/threshold ratio enters the critical band. In the galactic case, this happens at the low-acceleration end:
 
@@ -191,13 +217,25 @@ The MOND acceleration scale $a_0$ is the critical coupling of the stick-slip tra
 
 If dark matter effects are dual variables of a constrained optimization, several predictions follow that differ from particle dark matter models:
 
-### 5.1 Mode Structure
+### 5.1 Renzo's Rule — Quantitative Predictions
+
+The theoretical derivation of Renzo's Rule from complementary slackness (§4.3) produces quantitative predictions beyond the qualitative statement that "features correlate":
+
+1. **Feature amplitude ratio.** If $\delta a_{\text{bary}}$ is a local perturbation in baryonic acceleration at radius $r$, the corresponding perturbation in the dual variable is $\delta\lambda = -\delta a_{\text{bary}}$ wherever the constraint is active ($\lambda > 0$). The rotation curve feature amplitude should equal the baryonic feature amplitude, not merely correlate with it. This is testable: high-resolution HI rotation curves (e.g., THINGS survey, Walter et al., 2008) paired with photometric surface brightness profiles should show feature-for-feature amplitude matching in the low-acceleration regime, with the matching breaking down only where the constraint is slack (inner galaxy, high acceleration).
+
+2. **Transition radius.** The correspondence should activate sharply at the radius where $a_{\text{bary}}(r)$ drops below $a_{\text{obs}}(r)$ — the radius where complementary slackness switches from $\lambda = 0$ to $\lambda > 0$. Interior to this radius, baryonic features appear in the rotation curve through normal Newtonian dynamics; exterior to it, they appear through the dual variable. The transition should occur at $a \approx a_0$, coinciding with the MOND transition.
+
+3. **Asymmetry test.** A bump (local increase) in baryonic density should *reduce* the dual variable locally, while a dip should *increase* it. In both cases the rotation curve feature follows the baryonic feature. But the mechanism is asymmetric: bumps reduce $\lambda$ (the constraint relaxes), while dips increase $\lambda$ (the constraint tightens). If the relaxation has residual oscillatory structure (§5.2), dips should show slightly more scatter than bumps, because constraint-tightening updates have larger step sizes than constraint-relaxing ones in subgradient methods.
+
+4. **Morphological independence.** Because the dual variable depends only on the local acceleration deficit, Renzo's Rule should hold identically across galaxy types — spirals, dwarfs, LSBs, irregulars — with no dependence on merger history, star formation rate, or feedback physics. This is observed (Sancisi, 2004; Lelli, McGaugh & Schombert, 2016) and is one of the most challenging facts for particle dark matter models to accommodate.
+
+### 5.2 Mode Structure
 
 Lagrangian relaxation converges through oscillation around the saddle point. If the dark matter halo is the spatial signature of this convergence, its radial profile should reflect the oscillation envelope — not a smooth NFW profile (Navarro, Frenk & White, 1997), but one with residual oscillatory structure at a characteristic scale set by the "step size" of the dual update.
 
 Intriguingly, observations of galaxy rotation curves do show fine structure beyond smooth fits. Whether this structure is consistent with dual-variable oscillation (as opposed to baryonic substructure, observational noise, or other effects) is an empirical question.
 
-### 5.2 Convergence Failures
+### 5.3 Convergence Failures
 
 Lagrangian relaxation can fail to converge if:
 - The step size is too large (oscillation diverges)
@@ -206,7 +244,7 @@ Lagrangian relaxation can fail to converge if:
 
 Galaxy clusters are the regime where MOND notoriously underperforms — it predicts less dark matter than observed. In the Lagrangian relaxation framing, this could indicate a convergence failure: the optimization problem in galaxy clusters has different structure (multiple interacting constraints, loss of concavity) that prevents the single-constraint relaxation from finding the correct dual value. This would predict that galaxy cluster dark matter requires a multi-constraint formulation — consistent with the observation that cluster dynamics involve additional physics (hot gas, ram pressure, merger history) absent in isolated galaxies.
 
-### 5.3 Strong-Field Subharmonics
+### 5.4 Strong-Field Subharmonics
 
 If the mechanism is bidirectional, it predicts observable subharmonic signatures in strong-field systems where the drive *exceeds* the medium's dissipative threshold — not only where it falls below. Accretion disks are the sharpest test. The disk is a medium with its own transfer function: angular momentum is transported by turbulent viscosity (driven by the MRI), the disk flattens under pressure and tidal forces, and the geometry imposes conservation constraints that the medium cannot satisfy smoothly when driven too hard. The prediction: QPO frequency ratios (3:2, 2:1, 3:1) should be derivable from the disk's Stribeck-type transfer function — the ratio of orbital shear rate to MRI critical wavelength — without invoking resonance between independent oscillation modes. If the same functional form (drive/threshold ratio → subharmonic spectrum) that fits the MOND interpolating function at galactic scales also fits QPO frequency structure at accretion-disk scales, the structural claim is validated across eighteen orders of magnitude in acceleration.
 
@@ -214,7 +252,7 @@ An accretion disk may be the only astrophysical system that exhibits both entry 
 
 The black hole spin parameter $a^*$ provides a further test. In a prograde disk ($a^* > 0$), frame-dragging reduces the relative velocity between the disk material and the spacetime geometry; in a retrograde disk ($a^* < 0$), it increases it. The ISCO radius differs correspondingly — smaller for prograde, larger for retrograde — changing the shear rate and tidal coupling at the inner disk boundary. If QPO subharmonics arise from a Stribeck-type threshold, the spin parameter shifts where the drive/threshold ratio enters the critical band. The prediction: retrograde disks should exhibit QPO onset at different accretion rates than prograde disks of the same mass, and the subharmonic frequency structure should vary systematically with $a^*$. X-ray binaries with measured spins and QPOs (e.g., GRS 1915+105, XTE J1550-564) provide existing data against which this prediction can be checked.
 
-### 5.4 The DAMA Modulation as a Drive Oscillation
+### 5.5 The DAMA Modulation as a Drive Oscillation
 
 The DAMA/LIBRA experiment at Gran Sasso has reported an annual modulation in its NaI(Tl) detector event rate for over two decades, peaking in June and reaching a minimum in December. The conventional interpretation is particle dark matter: Earth's orbital velocity adds to the Sun's galactic velocity in June (~30 km/s faster through the halo) and subtracts in December, producing more particle scattering at peak velocity. The modulation is statistically robust. The interpretation is what is contested.
 
@@ -224,11 +262,11 @@ The transfer function interpretation makes the opposite prediction: **the modula
 
 SABRE South, currently being installed 1 km underground in the Stawell Gold Mine outside Melbourne, is designed to test DAMA/LIBRA using the same crystal material from the Southern Hemisphere. The particle interpretation predicts SABRE South will see the same modulation (possibly phase-shifted by 6 months due to hemisphere). The transfer function interpretation predicts it may not — different overburden (metamorphic rock vs. dolomite), different depth, different muon flux, different threshold. If SABRE South reproduces the modulation amplitude and phase, the particle interpretation is strengthened. If it sees a modulation at a different amplitude or does not see one, the medium-dependent threshold interpretation gains a data point: same drive, different medium, different response.
 
-### 5.5 No Direct Detection
+### 5.6 No Direct Detection
 
 If dark matter is a dual variable rather than a primal variable (a substance), direct detection experiments should find nothing. The dual variable has physical effects (it modifies the gravitational field) but is not a particle that carries energy-momentum independently of the constraint it enforces. This is consistent with the null results from XENON, LUX, PandaX, and other direct detection experiments through 2026.
 
-### 5.6 The Bullet Cluster
+### 5.7 The Bullet Cluster
 
 The Bullet Cluster (1E 0657-56) is often cited as evidence for particle dark matter, since the gravitational lensing signal is offset from the visible baryonic matter (hot gas). In the dual-variable framing, this requires that the constraint (and therefore its multiplier) can decouple from the baryonic distribution during violent non-equilibrium events (cluster mergers). This is plausible if the constraint is geometric (tied to the metric) rather than material (tied to the matter distribution) — the metric need not track the gas during a rapid merger. However, this prediction needs quantitative development to be compelling.
 
@@ -278,11 +316,12 @@ To our knowledge, the following specific connections have not appeared in the li
 2. The interpretation of mimetic gravity's Lagrange multiplier as an optimization-theoretic shadow price
 3. The application of Lagrangian relaxation (the optimization technique) to gravitational field dynamics
 4. The use of stick-slip relaxation oscillation as a dynamical model for the MOND transition
-5. The prediction that galaxy cluster MOND failures correspond to Lagrangian relaxation convergence failures
-6. The identification of the dark matter problem as an adiabatic-limit phenomenon favoring resonant over high-energy detection
-7. The structural correspondence between the clockwork mechanism and stick-slip period doubling
-8. The generalization from a monodirectional threshold ($a < a_0$) to a medium-dependent drive/threshold ratio, unifying galactic dark matter with accretion disk QPOs and atmospheric scattering under one mechanism
-9. The reinterpretation of the DAMA/LIBRA annual modulation as a drive oscillation through a medium-dependent critical band, predicting site-dependent (not site-independent) modulation — consistent with the non-replication by ANAIS-112 and COSINE-100
+5. The derivation of Renzo's Rule (baryonic-rotation curve feature coupling) as a theorem of local complementary slackness, rather than a correlation requiring explanation
+6. The prediction that galaxy cluster MOND failures correspond to Lagrangian relaxation convergence failures
+7. The identification of the dark matter problem as an adiabatic-limit phenomenon favoring resonant over high-energy detection
+8. The structural correspondence between the clockwork mechanism and stick-slip period doubling
+9. The generalization from a monodirectional threshold ($a < a_0$) to a medium-dependent drive/threshold ratio, unifying galactic dark matter with accretion disk QPOs and atmospheric scattering under one mechanism
+10. The reinterpretation of the DAMA/LIBRA annual modulation as a drive oscillation through a medium-dependent critical band, predicting site-dependent (not site-independent) modulation — consistent with the non-replication by ANAIS-112 and COSINE-100
 
 ---
 
@@ -296,7 +335,7 @@ The stick-slip framing identifies a specific regime: the subharmonic emerges whe
 
 For the galactic dark matter problem, the entry is from below: cosmic expansion is slow, galactic accelerations are small, the gravitational field enters the stick-slip band through patience. For accretion disks, the entry is from above: tidal shear and magnetic pressure exceed the disk's capacity to transport angular momentum smoothly, and the system mode-locks into QPO subharmonics. The mechanism is one; the direction of entry is medium-dependent.
 
-This has a direct experimental consequence. A collider does not fail because force is the wrong approach in general — force-driven subharmonics are real (§2.3, §5.3). A collider fails because it is not tuned to *any* medium's critical band for the gravitational subharmonic. It operates at the electroweak scale, which is neither the slow regime (galactic, $a_0 \sim 10^{-10}$ m/s²) nor the force-driven regime (accretion disk, MRI threshold). It is simply off-resonance. You need a detector tuned to a regime where the drive/threshold ratio actually enters the critical band.
+This has a direct experimental consequence. A collider does not fail because force is the wrong approach in general — force-driven subharmonics are real (§2.3, §5.4). A collider fails because it is not tuned to *any* medium's critical band for the gravitational subharmonic. It operates at the electroweak scale, which is neither the slow regime (galactic, $a_0 \sim 10^{-10}$ m/s²) nor the force-driven regime (accretion disk, MRI threshold). It is simply off-resonance. You need a detector tuned to a regime where the drive/threshold ratio actually enters the critical band.
 
 ### 9.2 From High-Energy to Resonant Detection
 
@@ -353,7 +392,7 @@ The paper operates at galaxy and cluster scales. Particle CDM earns its stronges
 
 ### 10.2 Can the Dual Variable Decouple Spatially?
 
-The Bullet Cluster requires the gravitational lensing signal (the "dark matter") to be spatially offset from the baryonic gas after a cluster merger. The qualitative argument (§5.6) — that a geometric constraint tracks the metric, not the gas — is plausible but unmodeled. Collisionless particle dark matter explains the offset naturally: particles pass through each other while gas shocks and decelerates. The dual-variable interpretation needs a simulation showing that the constraint's spatial profile evolves independently of the baryonic distribution during a violent non-equilibrium event. Until that simulation exists, the Bullet Cluster remains the strongest single objection to any non-particle dark matter framework.
+The Bullet Cluster requires the gravitational lensing signal (the "dark matter") to be spatially offset from the baryonic gas after a cluster merger. The qualitative argument (§5.7) — that a geometric constraint tracks the metric, not the gas — is plausible but unmodeled. Collisionless particle dark matter explains the offset naturally: particles pass through each other while gas shocks and decelerates. The dual-variable interpretation needs a simulation showing that the constraint's spatial profile evolves independently of the baryonic distribution during a violent non-equilibrium event. Until that simulation exists, the Bullet Cluster remains the strongest single objection to any non-particle dark matter framework.
 
 ### 10.3 From Schematic to Quantitative
 
@@ -373,7 +412,7 @@ Kawano et al. (2025) have taken the first step: high-speed imaging and finite el
 
 The cost of this hypothesis is low. It requires no new particles, no new forces, no modifications to general relativity at the level of the action, and no changes to the topology of spacetime. The manifold structure, causal structure, and light cone structure of GR are preserved exactly. What changes is only the cost function: the gravitational field pays a dual-variable price to maintain geometric consistency where baryonic matter alone is insufficient. The framework requires only that we read an existing mathematical structure (mimetic gravity's Lagrange multiplier) through an existing mathematical framework (Lagrangian relaxation) motivated by an existing physical phenomenon (stick-slip dynamics).
 
-If the framing is correct, it narrows the search space in two ways. Theoretically, the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at galactic scales — one instance of a medium-dependent threshold. Experimentally, it redirects detection strategy from off-resonance instruments (colliders at the electroweak scale) to on-resonance ones — slow detectors (atom interferometers, clock networks, mid-band gravitational wave detectors) for the galactic subharmonic, and X-ray timing for accretion disk subharmonics.
+If the framing is correct, it narrows the search space in three ways. Theoretically, the dark matter problem becomes a question about which geometric constraint the gravitational field is optimizing against, and the acceleration scale $a_0$ is the critical coupling at galactic scales — one instance of a medium-dependent threshold. Observationally, the framework's sharpest near-term test is Renzo's Rule: because the shadow price is local, the dual variable at each radius is determined by the local baryonic acceleration deficit, and every feature in the baryonic light curve must be mirrored in the rotation curve — not as a correlation to be fitted, but as a theorem of complementary slackness. High-resolution surveys (THINGS, SPARC) already contain the data; the prediction is feature-for-feature amplitude matching in the low-acceleration regime, with no free parameters. Experimentally, it redirects detection strategy from off-resonance instruments (colliders at the electroweak scale) to on-resonance ones — slow detectors (atom interferometers, clock networks, mid-band gravitational wave detectors) for the galactic subharmonic, and X-ray timing for accretion disk subharmonics.
 
 The structure generalizes. Any system where a signal propagates through a medium — and the medium's transfer function has a critical threshold at which it mode-converts the input into subharmonic artifacts — is a candidate for the same analysis. The threshold can be entered from either direction: drive too slow (galaxies) or drive too hard (inner accretion disks). The accretion disk is the strongest test case because it enters from both sides simultaneously, and the observables (rotation curves in the outer disk, QPO frequency ratios in the inner disk) are already measured. Atmospheric optics is another such system; the halos produced by point-source headlights in fog are, structurally, the optical analogue of the dark matter halo. Whether this generalization is productive beyond the gravitational case remains to be seen.
 
@@ -403,7 +442,10 @@ The thread began with a bowed string producing a tone one octave below its funda
 - Milgrom, M. (1983). A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis. *ApJ*, 270, 365-370.
 - Navarro, J. F., Frenk, C. S., & White, S. D. M. (1997). A universal density profile from hierarchical clustering. *ApJ*, 490(2), 493-508.
 - Nojiri, S., & Odintsov, S. D. (2014). Mimetic F(R) gravity: inflation, dark energy and bounce. *Mod. Phys. Lett. A*, 29(40), 1450211. arXiv:1408.3561.
+- Lelli, F., McGaugh, S. S., & Schombert, J. M. (2016). SPARC: Mass models for 175 disk galaxies with Spitzer photometry and accurate rotation curves. *AJ*, 152(6), 157. arXiv:1606.09251.
 - Roberts, B. M. et al. (2017). Search for domain wall dark matter with atomic clocks on board global positioning system satellites. *Nature Communications*, 8, 1195. arXiv:1704.06844.
+- Sancisi, R. (2004). The visible matter – dark matter coupling. *IAU Symposium*, 220, 233-240. arXiv:astro-ph/0311348.
+- Walter, F. et al. (2008). THINGS: The HI Nearby Galaxy Survey. *AJ*, 136(6), 2563-2647. arXiv:0810.2125.
 - Sebastiani, L., Vagnozzi, S., & Myrzakulov, R. (2017). Mimetic gravity: a review of recent developments and applications to cosmology and astrophysics. *Advances in High Energy Physics*, 2017.
 - Sussman, G. J., & Wisdom, J. (1992). Chaotic evolution of the solar system. *Science*, 257(5066), 56-62.
 - Verlinde, E. (2016). Emergent gravity and the dark universe. *SciPost Phys.*, 2(3), 016.
