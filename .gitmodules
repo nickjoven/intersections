@@ -1,0 +1,3 @@
+[submodule "proslambenomenos"]
+	path = proslambenomenos
+	url = https://github.com/nickjoven/proslambenomenos.git
