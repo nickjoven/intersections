@@ -30,7 +30,8 @@
 
 - Whether the Higgs mass and electroweak scale are determined by the depth
   of gauge commitment across the causal past (requires physical derivation,
-  not analogy).
+  not analogy). See `fundamental_forces_planck_scale.md` §III.F for the
+  structural analogy to stick-slip and the obstacles to making it rigorous.
 
 ## The math needed
 
