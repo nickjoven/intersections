@@ -4,7 +4,7 @@
 ORCID: 0009-0008-0679-0812
 March 2026. CC0.
 
-**Abstract.** The stick-slip / Stribeck / Lagrangian-relaxation framework developed in the companion paper operates at galactic scales. This note asks: do the strong and weak nuclear forces, or Planck-scale physics, exhibit mathematical structures that align with the framework's harmonics? We identify several connections — some rigorously established, others conjectural — and separate them accordingly. Part I presents established mathematics with published references. Part III presents pure speculation.
+**Abstract.** The stick-slip / Stribeck / Lagrangian-relaxation framework developed in the companion paper (Joven, 2026, "Stick-Slip Dynamics and the Dark Matter Dual") operates at galactic scales. This note asks: do the strong and weak nuclear forces, or Planck-scale physics, exhibit mathematical structures that align with the framework's harmonics? We identify several connections — some rigorously established, others conjectural — and separate them accordingly. Part I presents established mathematics with published references. Part III presents pure speculation.
 
 ---
 
@@ -76,7 +76,7 @@ This is mechanically identical to stick-slip oscillation in a bowed string:
 
 The energy-accumulation-threshold-release cycle is the same mathematical structure in both systems. The difference is the force law: quadratic elastic ($\frac{1}{2}kx^2$) for the bowed string versus linear confinement ($\sigma r$) for QCD. Both have the property that energy is stored continuously until a threshold is crossed discontinuously.
 
-In the language of the companion paper: the flux tube is in a permanent "stick" phase (quarks cannot separate), with "slip" events (pair production) as the mechanism by which the system relaxes. The hadron mass spectrum — bound states at energy scales the free quark theory does not predict — is the subharmonic artifact of confinement, analogous to the dark matter halo being the subharmonic artifact of the gravitational stick-slip transition.
+In the language of the stick-slip framework: the flux tube is in a permanent "stick" phase (quarks cannot separate), with "slip" events (pair production) as the mechanism by which the system relaxes. The hadron mass spectrum — bound states at energy scales the free quark theory does not predict — is the subharmonic artifact of confinement, analogous to the dark matter halo being the subharmonic artifact of the gravitational stick-slip transition.
 
 **References:**
 - Wilson, K. G. (1974). Confinement of quarks. *Phys. Rev. D*, 10, 2445.
@@ -128,7 +128,7 @@ At the transition $x = a/a_0 = 1$: $\mu''(1) = -2/8 = -1/4 \neq 0$. The maximum 
 
 The clockwork mechanism (Giudice & McCullough, 2017) produces an exponential hierarchy: a chain of $N$ fields with nearest-neighbor interactions yields a lightest mode with coupling suppressed by $q^N$ relative to the UV scale, where $q$ is the gear ratio.
 
-The companion paper's §9.3 applies this to explain why $a_0 \approx 1.2 \times 10^{-10}$ m/s$^2$ is so far below the Planck scale. The same mechanism can be applied to any threshold. The question: if multiple thresholds (gravitational $a_0$, QCD $\Lambda_{\text{QCD}}$) all arise from clockwork suppression of a Planck-scale coupling, do the chain lengths reveal structure?
+The stick-slip paper's §9.3 (now removed in revision; the argument is preserved here) applies this to explain why $a_0 \approx 1.2 \times 10^{-10}$ m/s$^2$ is so far below the Planck scale. The same mechanism can be applied to any threshold. The question: if multiple thresholds (gravitational $a_0$, QCD $\Lambda_{\text{QCD}}$) all arise from clockwork suppression of a Planck-scale coupling, do the chain lengths reveal structure?
 
 **Known scales:**
 
@@ -264,13 +264,11 @@ The specific constraint has not been identified. Candidates include:
 
 ### D. Superposition from Non-Injectivity
 
-The CVT non-injectivity law (`cvt/laws/noninjectivity.md`) states: "No present state certifies a unique history." If the forward map of physical law is non-injective at equilibrium, then quantum superposition — multiple states contributing to a measurement outcome — is the preimage degeneracy of a non-injective evolution operator.
+The CVT Law of Genealogical Non-Injectivity (Joven, 2026) states: "No present state certifies a unique history." If the forward map of physical law is non-injective at equilibrium, then quantum superposition — multiple states contributing to a measurement outcome — is the preimage degeneracy of a non-injective evolution operator.
 
 Precisely: if the evolution operator $U: \mathcal{H} \to \mathcal{H}$ is non-injective, then for a given final state $|\psi_f\rangle$, the preimage $U^{-1}(|\psi_f\rangle)$ is an equivalence class of initial states. What we call "superposition" is the structure of this equivalence class. The Born rule ($P = |\langle\psi|\phi\rangle|^2$) would follow from a uniform measure over the preimage equivalence class.
 
-**Status:** Open conjecture. Flagged in `cvt/synthesis.md`: "Whether the Born rule is the uniform measure over the preimage equivalence class (requires deriving from the non-injectivity law, not assuming)."
-
-**Reference:** Joven, N. (2026). Law of Genealogical Non-Injectivity. `cvt/laws/noninjectivity.md`.
+**Status:** Open conjecture. Whether the Born rule is the uniform measure over the preimage equivalence class remains to be derived, not assumed.
 
 ### E. Information at the Horizon
 
