@@ -384,8 +384,8 @@ def step3_phase_portrait(r_demo=5.0, save=True):
             lks.append(locked)
         return np.array(Ds), np.array(vs), np.array(lks)
 
-    D_A, v_A, lk_A = trace_path(wK * 0.5)              # Path A: slow (below)
-    D_B, v_B, lk_B = trace_path(OMEGA_P * 1.8)         # Path B: fast (above)
+    D_A, v_A, lk_A = trace_path(wK * 0.4)              # Path A: slow (well below)
+    D_B, v_B, lk_B = trace_path(OMEGA_P * 1.9)         # Path B: fast (well above)
 
     fig, axes = plt.subplots(1, 2, figsize=(13, 6))
     fig.suptitle('Step 3: Two Entry Paths to the Same Locked State',

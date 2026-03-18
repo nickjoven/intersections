@@ -150,8 +150,8 @@ a { color: var(--accent); }
 <div class="controls">
   <div class="control-group">
     <label>Bow velocity (slow → subharmonic)</label>
-    <input type="range" id="bowVelocity" min="0.02" max="1.0" step="0.01" value="0.30">
-    <div class="value" id="bowVelocityVal">0.30</div>
+    <input type="range" id="bowVelocity" min="0.02" max="1.0" step="0.01" value="0.12">
+    <div class="value" id="bowVelocityVal">0.12</div>
   </div>
   <div class="control-group">
     <label>Bow position (→ crossover radius)</label>
@@ -159,8 +159,8 @@ a { color: var(--accent); }
     <div class="value" id="bowPositionVal">0.35</div>
   </div>
   <div class="control-group">
-    <label>Bow pressure (light)</label>
-    <input type="range" id="bowPressure" min="0.1" max="1.0" step="0.01" value="0.4">
+    <label>Bow pressure (light → high)</label>
+    <input type="range" id="bowPressure" min="0.1" max="1.2" step="0.01" value="0.4">
     <div class="value" id="bowPressureVal">0.40</div>
   </div>
 </div>
@@ -168,10 +168,10 @@ a { color: var(--accent); }
 <!-- ============================================================ -->
 <h2>2. Velocity × Pressure: The Regime Map</h2>
 <p class="note">
-  The subharmonic does not emerge from extreme pressure. It emerges from slow velocity
-  with light-to-moderate pressure. This heatmap shows the period ratio across the full
-  parameter space. The crosshair tracks your current sliders. The subharmonic regime
-  (ratio ≈ 2, red) sits in the slow+light quadrant — not the loud one.
+  The subharmonic emerges from two opposite directions in parameter space: slow velocity
+  (understimulated) and high pressure (overwhelmed). Both enter the same narrow band.
+  This heatmap shows the period ratio across the full parameter space. The crosshair
+  tracks your current sliders.
 </p>
 
 <div class="side-by-side">
@@ -187,12 +187,12 @@ a { color: var(--accent); }
   <div class="panel">
     <h3>What the regime map shows</h3>
     <p style="font-size:0.85em; color:var(--fg2); line-height:1.7">
-      <strong style="color:var(--accent2)">The subharmonic band is narrow and diagonal.</strong>
-      It requires a specific velocity/pressure ratio — not maximum force.
-      Too fast: the string slips continuously (fundamental).
-      Too slow: the string locks to the bow (static).
-      Too heavy: energy dissipates before the period can double.
-      Too light: insufficient coupling to maintain stick phase.<br><br>
+      <strong style="color:var(--accent2)">Two entry paths to the same subharmonic.</strong>
+      Slow bow (understimulated): the string barely sustains oscillation,
+      period doubles as energy accumulates over two natural cycles.
+      High pressure (overwhelmed): the stick phase lengthens until the
+      string snaps free with enough force to skip a cycle.
+      Both converge to the same narrow band.<br><br>
       <strong style="color:var(--accent)">This is the MOND regime.</strong>
       Dark matter effects don't appear in extreme gravitational fields
       (black holes, neutron stars) or in negligible fields (empty space).
