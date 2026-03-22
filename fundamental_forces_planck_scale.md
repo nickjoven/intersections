@@ -235,7 +235,7 @@ If so, confinement is the "static friction" minimum of $V$ and asymptotic freedo
 
 Integrating $\beta(g) = -dV/dg$ gives $V(g) = \frac{\beta_0}{4}g^4 + \frac{\beta_1}{6}g^6 + \ldots$, which is a quartic potential with higher-order corrections. Whether this quartic can be approximated by the Stribeck exponential form over the physically relevant range of $g$ is a numerical question addressed in the companion notebook.
 
-**Status:** Mathematically precise conjecture. No proof exists.
+**Status:** Mathematically precise conjecture. No proof exists. *Partial progress:* The harmonics [Planck scale derivation](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/06_planck_scale.md) shows $N = 3$ (QCD color count) emerges as a threshold from synchronization cost geometry, connecting to QCD structure. The direct verification $\beta = -dV/dg$ remains open.
 
 ### B. QCD Feigenbaum Cascade
 
@@ -268,7 +268,7 @@ The CVT Law of Genealogical Non-Injectivity (Joven, 2026) states: "No present st
 
 Precisely: if the evolution operator $U: \mathcal{H} \to \mathcal{H}$ is non-injective, then for a given final state $|\psi_f\rangle$, the preimage $U^{-1}(|\psi_f\rangle)$ is an equivalence class of initial states. What we call "superposition" is the structure of this equivalence class. The Born rule ($P = |\langle\psi|\phi\rangle|^2$) would follow from a uniform measure over the preimage equivalence class.
 
-**Status:** Open conjecture. Whether the Born rule is the uniform measure over the preimage equivalence class remains to be derived, not assumed.
+**Status:** Open conjecture. Whether the Born rule is the uniform measure over the preimage equivalence class remains to be derived, not assumed. *Partial progress:* The harmonics [Born rule derivation](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/01_born_rule.md) approaches this from a different direction — deriving the Born rule from basin-of-attraction measure in the synchronization landscape, where probability emerges from the geometry of the cost surface rather than from non-injectivity. The two approaches may be complementary (basin measure as the mechanism, non-injectivity as the structural reason basins exist).
 
 ### E. Information at the Horizon
 

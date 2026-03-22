@@ -257,6 +257,8 @@ The accretion disk adds differential rotation: angular velocity falls as $r^{-3/
 
 The paper operates at galaxy and cluster scales. Particle CDM earns its strongest results at cosmological scales — CMB acoustic peaks, baryon acoustic oscillations, the matter power spectrum — with sub-percent precision. The honest position: this framework has not been applied at cosmological scales. Mimetic gravity's Lagrange multiplier does admit cosmological solutions (Sebastiani et al., 2017; Nojiri & Odintsov, 2014), but "not ruled out" is not "predicts the right peak positions." Until the dual-variable framework reproduces these, it should be understood as a framework for galactic-scale phenomenology, not a complete ΛCDM alternative.
 
+*Partial progress:* The [harmonics](https://github.com/nickjoven/harmonics) synchronization cost framework connects to cosmological parameters ($H_0$, $\Lambda$) via the [a₀ threshold derivation](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/03_a0_threshold.md) and derives spectral tilt from cost scaling ([`04_spectral_tilt.md`](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/04_spectral_tilt.md)). Sub-percent CMB/BAO accuracy remains undemonstrated.
+
 ### 7.2 Spatial Decoupling
 
 The Bullet Cluster requires quantitative simulation showing that the constraint's spatial profile evolves independently of the baryonic distribution during a violent merger. Collisionless particle dark matter explains the offset naturally; the dual-variable interpretation needs a simulation demonstrating the same. This remains the strongest single objection to any non-particle framework.
@@ -264,6 +266,8 @@ The Bullet Cluster requires quantitative simulation showing that the constraint'
 ### 7.3 Cluster Convergence
 
 Galaxy clusters are where MOND underperforms — predicting less dark matter than observed. In the Lagrangian relaxation framing, this may indicate convergence failure: the multi-constraint optimization in clusters (hot gas, ram pressure, merger history) prevents single-constraint relaxation from finding the correct dual value. This predicts that cluster dark matter requires a multi-constraint formulation.
+
+*Partial progress:* The harmonics [golden ratio selection mechanism](https://github.com/nickjoven/harmonics/blob/main/sync_cost/derivations/05_golden_ratio.md) may explain why single-constraint relaxation fails at cluster scales — the multi-mode structure requires a different convergence path.
 
 ### 7.4 From Schematic to Quantitative
 
