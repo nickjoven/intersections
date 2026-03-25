@@ -24,7 +24,9 @@ where $\Lambda_{\text{QCD}} \approx 200$ MeV is the QCD scale parameter (Gross &
 
 The Stribeck friction curve (Stribeck, 1902) is
 
-$$\mu(v) = \mu_k + (\mu_s - \mu_k) \exp\left(-(v/v_{\text{th}})^2\right)$$
+$$\mu(v) = \mu_k + (\mu_s - \mu_k) \exp\left(-(v/v_{\text{th}})^{\delta_S}\right)$$
+
+*Note on the Stribeck exponent:* The generic engineering form uses $\delta_S = 2$ (Stribeck, 1902). The framework's MOND-specific fit uses $\delta_S = \frac{1}{2}$, determined by Tully-Fisher slope matching (see `proslambenomenos/renzos_rule_from_kuramoto.md` §7.1). The exponent $\delta_S = 2$ appears here because this section compares functional *shapes* — monotone threshold-mediated transfer functions — not the specific MOND parameterization.
 
 This function:
 
@@ -87,6 +89,8 @@ In the language of the stick-slip framework: the flux tube is in a permanent "st
 ---
 
 ### 3. Quadratic Maximum and Period Doubling
+
+*Notation:* Throughout this document, $\delta_F$ denotes the Feigenbaum constant ($4.669\ldots$) while the Stribeck exponent ($\delta = \frac{1}{2}$ in the MOND-specific form; see §I.1) is written $\delta_S$ when distinction is needed.
 
 Feigenbaum's universality theorem (Feigenbaum, 1978, 1979): for any smooth unimodal map $f$ with a quadratic maximum ($f''(x_{\max}) \neq 0$), the period-doubling cascade converges with ratio
 

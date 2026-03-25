@@ -52,6 +52,8 @@ Galaxy rotation curves deviate from Newtonian predictions at the outskirts (low 
 
 Milgrom's MOND interpolating function $\mu(x)$, where $x = a/a_0$, transitions between Newtonian ($\mu \to 1$ for $x \gg 1$) and deep-MOND ($\mu \to x$ for $x \ll 1$). The quantity $(1 - \mu)$ measures excess coupling — high below the threshold, declining to zero above it. This is structurally parallel to the velocity-weakening branch of the Stribeck friction curve.
 
+*Note on interpolating functions:* The standard MOND form $\mu(x) = x/(1+x)$ is used here for its algebraic simplicity. The framework's Stribeck-derived form $\mu(x) = 1 - \exp(-\sqrt{x})$ (derived in the companion derivation `renzos_rule_from_kuramoto.md` via $\delta_S = \frac{1}{2}$) is the predicted interpolation. The two agree asymptotically ($x \ll 1$ and $x \gg 1$) but differ at the transition (e.g., at $x = 1$: $0.50$ vs $0.63$). Quantitative predictions should use the Stribeck-derived form.
+
 The galactic case enters the stick-slip band from the velocity side: cosmic expansion is slow, galactic accelerations are small, and the gravitational field enters the critical regime through patience — the slow-drive path of §1.1.
 
 ### 2.2 The Two Branches in Astrophysics
