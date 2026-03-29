@@ -122,15 +122,15 @@ a { color: var(--accent); }
 </p>
 
 <!-- ============================================================ -->
-<h2>1. The String and the Galaxy</h2>
+<h2 id="string-and-galaxy">The String and the Galaxy</h2>
 <p class="note">
   Position along the string = radius from galactic center.
   Bow contact point = crossover radius (a = a₀).
-  Subharmonic displacement = dark matter density.
+  Subharmonic displacement maps to dark matter density.
 </p>
 
 <div class="panel">
-  <canvas id="stringCanvas" height="200"></canvas>
+  <canvas id="stringCanvas" height="200" role="img" aria-label="Animated string displacement showing stick-slip oscillation with subharmonic envelope"></canvas>
   <div class="legend">
     <div class="legend-item"><div class="legend-swatch" style="background:var(--accent)"></div> String displacement</div>
     <div class="legend-item"><div class="legend-swatch" style="background:var(--accent2)"></div> Subharmonic envelope (→ DM halo)</div>
@@ -139,7 +139,7 @@ a { color: var(--accent); }
 </div>
 
 <div class="panel">
-  <canvas id="galaxyCanvas" height="180"></canvas>
+  <canvas id="galaxyCanvas" height="180" role="img" aria-label="Galaxy acceleration profile showing baryonic, observed, and dark matter dual variable curves"></canvas>
   <div class="legend">
     <div class="legend-item"><div class="legend-swatch" style="background:var(--accent3)"></div> Baryonic acceleration</div>
     <div class="legend-item"><div class="legend-swatch" style="background:var(--accent2)"></div> Dual variable λ (dark matter)</div>
@@ -166,9 +166,9 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>2. Velocity × Pressure: The Regime Map</h2>
+<h2 id="regime-map">Velocity × Pressure: The Regime Map</h2>
 <p class="note">
-  The subharmonic emerges from two opposite directions in parameter space: slow velocity
+  The subharmonic emerges from two opposite corners of parameter space: slow velocity
   (understimulated) and high pressure (overwhelmed). Both enter the same narrow band.
   This heatmap shows the period ratio across the full parameter space. The crosshair
   tracks your current sliders.
@@ -176,7 +176,7 @@ a { color: var(--accent); }
 
 <div class="side-by-side">
   <div class="panel">
-    <canvas id="phaseCanvas" height="360"></canvas>
+    <canvas id="phaseCanvas" height="360" role="img" aria-label="Heatmap of bow velocity versus pressure showing oscillation regime: locked, fundamental, subharmonic, and chaotic"></canvas>
     <div class="legend">
       <div class="legend-item"><div class="legend-swatch" style="background:#1a1a2e"></div> Locked/static</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#6a9fff"></div> Fundamental (ratio ≈ 1)</div>
@@ -197,13 +197,13 @@ a { color: var(--accent); }
       Dark matter effects don't appear in extreme gravitational fields
       (black holes, neutron stars) or in negligible fields (empty space).
       They appear in a specific low-acceleration band — the gravitational
-      analogue of this diagonal sweet spot.
+      analogue of the subharmonic regime shown in the heatmap.
     </p>
   </div>
 </div>
 
 <!-- ============================================================ -->
-<h2>3. Stribeck ≡ MOND: Three Curves, One Shape</h2>
+<h2 id="stribeck-mond">Stribeck ≡ MOND: Three Curves, One Shape</h2>
 <p class="note">
   The Stribeck friction curve, MOND interpolating function, and complementary slackness
   condition all produce the same threshold transition. Drag a₀ to see the mapping shift.
@@ -221,7 +221,7 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>4. Lagrangian Relaxation: Convergence</h2>
+<h2 id="lagrangian-convergence">Lagrangian Relaxation: Convergence</h2>
 <p class="note">
   The dual variable oscillates around the saddle point.
   Slow step size → convergence (stable rotation curve).
@@ -258,7 +258,7 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>5. Galaxy Rotation Curve: Dual Variable Profile</h2>
+<h2 id="rotation-curve">Galaxy Rotation Curve: Dual Variable Profile</h2>
 <p class="note">
   The dark matter halo profile emerges as the shadow price of the rotation curve constraint.
   Where baryonic mass is insufficient, the dual variable fills the gap.
@@ -281,7 +281,7 @@ a { color: var(--accent); }
 </div>
 
 <!-- ============================================================ -->
-<h2>6. Mass Discrepancy–Acceleration Relation</h2>
+<h2 id="mdar-section">Mass Discrepancy–Acceleration Relation</h2>
 <p class="note">
   McGaugh et al. (2016). The empirical heart of the dark matter problem.
   The dual variable activates below a₀ — complementary slackness in action.
@@ -295,6 +295,7 @@ a { color: var(--accent); }
 <p style="margin-top:30px; font-size:0.8em; color:var(--fg2)">
   Companion to <a href="joven_stick_slip_dark_matter.md">Stick-Slip Dynamics and the Dark Matter Dual</a> (Joven, 2026).
   Notebook: <a href="stick_slip_lagrangian.ipynb">stick_slip_lagrangian.ipynb</a>.
+  <a href="https://github.com/nickjoven">GitHub</a>.
   Released under CC0.
 </p>
 
